@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "916265304547",
+    "project_id": "senior-health-care",
+    "storage_bucket": "senior-health-care.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:916265304547:android:9303caeb64a3ff0cfba0d6",
+        "android_client_info": {
+          "package_name": "com.example.senior_health_care"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "916265304547-5n60afe8gakrqn3d6cgc4r49ni4v04t2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmgmLTmdov7sKRrKUGquRA6QEp-yxbSVo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "916265304547-5n60afe8gakrqn3d6cgc4r49ni4v04t2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
