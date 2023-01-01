@@ -16,7 +16,7 @@ class _InputDateBarState extends State<InputDateBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: kWhite,
         borderRadius: kBorderRadiusM,
@@ -33,17 +33,24 @@ class _InputDateBarState extends State<InputDateBar> {
         children: [
           Row(
             children: [
-              IconButton(
-                onPressed: () {
-                  selected = selected.subtract(const Duration(days: 1));
-                  setState(() {});
-                  print("어제 날짜 $selected");
-                },
-                icon: Icon(
-                  Icons.chevron_left_rounded,
-                  color: kBlack,
-                  size: 24,
-                ),
+              Material(
+                borderRadius: kBorderRadiusL,
+                color: Colors.transparent,
+                child: InkWell(
+                    borderRadius: kBorderRadiusL,
+                    onTap: () {
+                      selected = selected.subtract(const Duration(days: 1));
+                      setState(() {});
+                      print("어제 날짜 $selected");
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Icon(
+                        Icons.chevron_left_rounded,
+                        color: kBlack,
+                        size: 24,
+                      ),
+                    )),
               ),
               TextButton(
                 onPressed: null,
@@ -80,17 +87,24 @@ class _InputDateBarState extends State<InputDateBar> {
                 ),
                 child: Text("오늘", style: TextStyle(fontSize: kXS - 2)),
               ),
-              IconButton(
-                onPressed: () {
-                  selected = selected.add(const Duration(days: 1));
-                  setState(() {});
-                  print("내일 날짜 $selected");
-                },
-                icon: Icon(
-                  Icons.chevron_right_rounded,
-                  color: kBlack,
-                  size: 24,
-                ),
+              Material(
+                borderRadius: kBorderRadiusL,
+                color: Colors.transparent,
+                child: InkWell(
+                    borderRadius: kBorderRadiusL,
+                    onTap: () {
+                      selected = selected.add(const Duration(days: 1));
+                      setState(() {});
+                      print("내일 날짜 $selected");
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Icon(
+                        Icons.chevron_right_rounded,
+                        color: kBlack,
+                        size: 24,
+                      ),
+                    )),
               ),
             ],
           ),
