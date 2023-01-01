@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:senior_health_care/widgets/custom_appbar.dart';
 
 class BloodSugarInputScreen extends StatefulWidget {
   const BloodSugarInputScreen({Key? key}) : super(key: key);
@@ -10,6 +11,8 @@ class BloodSugarInputScreen extends StatefulWidget {
 class _BloodSugarInputScreenState extends State<BloodSugarInputScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: customAppBar("혈당 입력하기", context, hasBack: true),
+    );
   }
 }
