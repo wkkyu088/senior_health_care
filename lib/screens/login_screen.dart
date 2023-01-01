@@ -44,7 +44,6 @@ class _LoginScreenState extends State<LoginScreen> {
           margin: EdgeInsets.only(top: statusBarHeight),
           child: Column(
             children: [
-              Text("${FirebaseAuth.instance.currentUser?.email}"),
               // 앱 로고
               SizedBox(
                 height: isOpen ? screenHeight * 0.22 : screenHeight * 0.35,
