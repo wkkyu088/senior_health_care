@@ -1,6 +1,9 @@
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:senior_health_care/main.dart';
+import 'package:senior_health_care/screens/login_screen.dart';
+import 'package:senior_health_care/utils/firestore.dart';
 
 import '../constants.dart';
 
@@ -13,12 +16,28 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   startTimer() async {
-    return Timer(const Duration(milliseconds: 2000), initApp);
+    return Timer(const Duration(milliseconds: 1000), initApp);
   }
 
   void initApp() async {
-    Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const BottomNavBar()));
+    // FirebaseAuth.instance.signOut();
+    var currentUser = FirebaseAuth.instance.currentUser;
+    print("current user : ${currentUser?.email}");
+
+    if (currentUser != null) {
+      await UserManager.getProfile(currentUser.uid);
+
+      if (!mounted) return;
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => const BottomNavBar()));
+    } else {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => const LoginScreen()));
+    }
   }
 
   @override
