@@ -98,7 +98,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   Widget build(BuildContext context) {
     Widget bottomNavBar() {
       return Container(
-        padding: const EdgeInsets.symmetric(vertical: 8),
+        height: 70,
         color: kWhite,
         child: BottomNavigationBar(
           backgroundColor: Colors.transparent,
