@@ -37,7 +37,7 @@ class _InputScreenState extends State<InputScreen> {
             child: Column(
               children: [
                 const InputDateBar(),
-                const SizedBox(height: 30),
+                const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
