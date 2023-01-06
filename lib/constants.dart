@@ -12,9 +12,9 @@ Color kBlack = const Color(0xFF212121);
 Color kGrey = const Color(0xFFBFBFBF);
 Color kLightGrey = const Color(0xFFDFDFDF);
 
-Color kDanger = const Color(0xFFEB4956);
-Color kWarning = const Color(0xFFF9BE50);
-Color kSafe = const Color(0xFF5BB570);
+Color kDanger = Color(0xFFD74E55);
+Color kWarning = Color(0xFFF9BB5C);
+Color kSafe = Color(0xFF5AA647);
 
 // Font Size
 double kXL = 22;

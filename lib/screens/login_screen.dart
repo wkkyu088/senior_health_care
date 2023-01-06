@@ -46,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               // 앱 로고
               SizedBox(
-                height: isOpen ? screenHeight * 0.22 : screenHeight * 0.35,
+                height: isOpen ? screenHeight * 0.22 : screenHeight * 0.33,
                 width: screenWidth * 0.4,
                 child: Image.asset('assets/images/logo1.png'),
               ),
@@ -204,8 +204,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             ],
                           ),
                           // 회원가입 버튼
-                          Padding(
-                            padding: const EdgeInsets.all(10),
+                          Container(
+                            alignment: Alignment.center,
                             child: TextButton(
                               onPressed: () {
                                 Navigator.push(

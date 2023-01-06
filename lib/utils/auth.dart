@@ -24,8 +24,10 @@ class MethodEmail {
         await UserManager.setProfile(
             userCredential.user!.uid, ageCont, isMale, heightCont);
 
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const BottomNavBar()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const BottomNavBar(startIndex: 2)));
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
@@ -54,8 +56,10 @@ class MethodEmail {
         Fluttertoast.showToast(msg: "로그인 성공");
         await UserManager.getProfile(userCredential.user!.uid);
 
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const BottomNavBar()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const BottomNavBar(startIndex: 2)));
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -113,8 +117,10 @@ class MethodGoogle {
         // 구글로 로그인
         print("값이 있어서 로그인");
         await UserManager.getProfile(userId);
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const BottomNavBar()));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const BottomNavBar(startIndex: 2)));
       }
     }
   }
@@ -124,6 +130,8 @@ class MethodGoogle {
     await UserManager.setProfile(userId, ageCont, isMale, heightCont);
 
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const BottomNavBar()));
+        context,
+        MaterialPageRoute(
+            builder: (context) => const BottomNavBar(startIndex: 2)));
   }
 }

@@ -72,7 +72,8 @@ class MyApp extends StatelessWidget {
 }
 
 class BottomNavBar extends StatefulWidget {
-  const BottomNavBar({Key? key}) : super(key: key);
+  final int startIndex;
+  const BottomNavBar({Key? key, required this.startIndex}) : super(key: key);
   @override
   State<BottomNavBar> createState() => _BottomNavBarState();
 }
@@ -91,6 +92,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   void initState() {
     super.initState();
+    selectedIndex = widget.startIndex;
     setState(() {});
   }
 
