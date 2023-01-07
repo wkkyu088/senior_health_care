@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:senior_health_care/screens/resultScreens/heart_rate_result.dart';
+import 'package:senior_health_care/utils/firestore.dart';
 import 'package:senior_health_care/widgets/common_input_widget.dart';
 import 'package:senior_health_care/widgets/custom_appbar.dart';
 import 'package:senior_health_care/widgets/custom_dialog.dart';
@@ -14,10 +17,35 @@ class HeartRateInputScreen extends StatefulWidget {
 }
 
 class _HeartRateInputScreenState extends State<HeartRateInputScreen> {
+  String date = DateFormat('yyyyMMdd').format(DateTime.now());
   int selected = 0;
-  List<bool> selectList = [true, false];
+  List<String> selectName = ["평상시", "운동 후"];
   final valueCont = TextEditingController();
   bool isValueEmpty = false;
+
+  void initData() async {
+    final users = FirebaseFirestore.instance.collection('users').doc(uid);
+    var heartRates = users.collection('heartRate');
+    var v = await heartRates.doc(date).get();
+    var m = v.data() as Map;
+    print(m);
+
+    if (!mounted) return;
+    if (m.isNotEmpty) {
+      showWarningDialog(
+        context,
+        "이미 입력한 값이 존재합니다.\n새로 입력하시겠습니까?",
+        hasCancel: true,
+        oneMorePop: true,
+      );
+    }
+  }
+
+  @override
+  void initState() {
+    initData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +58,6 @@ class _HeartRateInputScreenState extends State<HeartRateInputScreen> {
       return TextButton(
         onPressed: () {
           selected = idx;
-          for (var i = 0; i < selectList.length; i++) {
-            if (i == idx) {
-              selectList[i] = true;
-            } else {
-              selectList[i] = false;
-            }
-          }
           setState(() {});
         },
         style: TextButton.styleFrom(
@@ -69,9 +90,9 @@ class _HeartRateInputScreenState extends State<HeartRateInputScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  radioButton("평상시", 0),
+                  radioButton(selectName[0], 0),
                   const SizedBox(width: 10),
-                  radioButton("운동 후", 1),
+                  radioButton(selectName[1], 1),
                 ],
               ),
               const SizedBox(height: 30),
@@ -88,7 +109,7 @@ class _HeartRateInputScreenState extends State<HeartRateInputScreen> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (valueCont.text == "") {
                           showWarningDialog(
                               context, "입력하지 않은 필수 값이 있습니다.\n다시 확인해주세요!");
@@ -97,12 +118,16 @@ class _HeartRateInputScreenState extends State<HeartRateInputScreen> {
                         } else {
                           int value = int.parse(valueCont.text);
 
+                          print("$date ${selectName[selected]} $value");
+
+                          await InputManager.setHeartRate(
+                              uid, date, selectName[selected], value);
+
                           if (selected == 1) {
                             value = (value / 1.7).round();
                           }
 
-                          print("$selected $value");
-
+                          if (!mounted) return;
                           if (userGender) {
                             if (value >= 50 && value <= 73) {
                               showResultDialog(

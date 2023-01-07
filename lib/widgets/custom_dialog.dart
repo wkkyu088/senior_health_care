@@ -3,7 +3,8 @@ import 'package:senior_health_care/main.dart';
 import 'package:senior_health_care/screens/input_screen.dart';
 import '../constants.dart';
 
-void showWarningDialog(context, content, {hasCancel = false, isCheck = false}) {
+void showWarningDialog(context, content,
+    {hasCancel = false, isCheck = false, oneMorePop = false}) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -53,6 +54,7 @@ void showWarningDialog(context, content, {hasCancel = false, isCheck = false}) {
                       ? InkWell(
                           onTap: () {
                             Navigator.pop(context);
+                            oneMorePop ? Navigator.pop(context) : null;
                           },
                           child: Container(
                             width: MediaQuery.of(context).size.width * 0.7 / 2,

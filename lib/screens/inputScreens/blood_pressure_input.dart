@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:senior_health_care/screens/resultScreens/blood_pressure_result.dart';
+import 'package:senior_health_care/utils/firestore.dart';
 import 'package:senior_health_care/widgets/common_input_widget.dart';
 import 'package:senior_health_care/widgets/custom_appbar.dart';
 import 'package:senior_health_care/widgets/custom_dialog.dart';
@@ -15,14 +18,38 @@ class BloodPressureInputScreen extends StatefulWidget {
 }
 
 class _BloodPressureInputScreenState extends State<BloodPressureInputScreen> {
+  String date = DateFormat('yyyyMMdd').format(DateTime.now());
   int selected = 0;
-  List<bool> selectList = [true, false, false, false];
-  final sysCont = TextEditingController();
-  final diaCont = TextEditingController();
-  final pulCont = TextEditingController();
+  List<String> selectName = ["오른쪽 팔", "왼쪽 팔", "오른쪽 다리", "왼쪽 다리"];
+  TextEditingController sysCont = TextEditingController();
+  TextEditingController diaCont = TextEditingController();
+  TextEditingController pulCont = TextEditingController();
   bool isSysEmpty = false;
   bool isDiaEmpty = false;
   bool isPulEmpty = false;
+
+  void initData() async {
+    final users = FirebaseFirestore.instance.collection('users').doc(uid);
+    var bloodPressures = users.collection('bloodPressure');
+    var v = await bloodPressures.doc(date).get();
+    var m = v.data() as Map;
+
+    if (!mounted) return;
+    if (m.isNotEmpty) {
+      showWarningDialog(
+        context,
+        "이미 입력한 값이 존재합니다.\n새로 입력하시겠습니까?",
+        hasCancel: true,
+        oneMorePop: true,
+      );
+    }
+  }
+
+  @override
+  void initState() {
+    initData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,13 +62,13 @@ class _BloodPressureInputScreenState extends State<BloodPressureInputScreen> {
       return TextButton(
         onPressed: () {
           selected = idx;
-          for (var i = 0; i < selectList.length; i++) {
-            if (i == idx) {
-              selectList[i] = true;
-            } else {
-              selectList[i] = false;
-            }
-          }
+          // for (var i = 0; i < selectList.length; i++) {
+          //   if (i == idx) {
+          //     selectList[i] = true;
+          //   } else {
+          //     selectList[i] = false;
+          //   }
+          // }
           setState(() {});
         },
         style: TextButton.styleFrom(
@@ -74,18 +101,18 @@ class _BloodPressureInputScreenState extends State<BloodPressureInputScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  radioButton("오른쪽 팔", 0),
+                  radioButton(selectName[0], 0),
                   const SizedBox(width: 10),
-                  radioButton("왼쪽 팔", 1),
+                  radioButton(selectName[1], 1),
                 ],
               ),
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  radioButton("오른쪽 다리", 2),
+                  radioButton(selectName[2], 2),
                   const SizedBox(width: 10),
-                  radioButton("왼쪽 다리", 3),
+                  radioButton(selectName[3], 3),
                 ],
               ),
               const SizedBox(height: 30),
@@ -120,7 +147,7 @@ class _BloodPressureInputScreenState extends State<BloodPressureInputScreen> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (sysCont.text == "" ||
                             diaCont.text == "" ||
                             pulCont.text == "") {
@@ -143,8 +170,12 @@ class _BloodPressureInputScreenState extends State<BloodPressureInputScreen> {
                           int dia = int.parse(diaCont.text);
                           int pul = int.parse(pulCont.text);
 
-                          print("$selected $sys $dia $pul");
+                          print("$date ${selectName[selected]} $sys $dia $pul");
 
+                          await InputManager.setBloodPressure(
+                              uid, date, selectName[selected], sys, dia, pul);
+
+                          if (!mounted) return;
                           if (sys < 120 && dia < 80) {
                             showResultDialog(
                               context,

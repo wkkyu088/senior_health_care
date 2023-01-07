@@ -25,6 +25,10 @@ class MethodEmail {
         Navigator.push(
             context,
             MaterialPageRoute(
+                builder: (context) => const BottomNavBar(startIndex: 1)));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
                 builder: (context) => const BottomNavBar(startIndex: 2)));
       }
     } on FirebaseAuthException catch (e) {
@@ -53,6 +57,10 @@ class MethodEmail {
         Fluttertoast.showToast(msg: "로그인 성공");
         await UserManager.getProfile(userCredential.user!.uid);
 
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const BottomNavBar(startIndex: 1)));
         Navigator.push(
             context,
             MaterialPageRoute(
@@ -114,6 +122,11 @@ class MethodGoogle {
         // 구글로 로그인
         print("값이 있어서 로그인");
         await UserManager.getProfile(userId);
+
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const BottomNavBar(startIndex: 1)));
         Navigator.push(
             context,
             MaterialPageRoute(
@@ -126,6 +139,10 @@ class MethodGoogle {
   static signUpWithGoogle(context, userId, age, isMale, height) async {
     await UserManager.setProfile(userId, age, isMale, height);
 
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const BottomNavBar(startIndex: 1)));
     Navigator.push(
         context,
         MaterialPageRoute(

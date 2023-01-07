@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:senior_health_care/screens/resultScreens/weight_result.dart';
+import 'package:senior_health_care/utils/firestore.dart';
 import 'package:senior_health_care/widgets/common_input_widget.dart';
 import 'package:senior_health_care/widgets/custom_appbar.dart';
 import 'package:senior_health_care/widgets/custom_dialog.dart';
@@ -14,10 +17,35 @@ class WeightInputScreen extends StatefulWidget {
 }
 
 class _WeightInputScreenState extends State<WeightInputScreen> {
+  String date = DateFormat('yyyyMMdd').format(DateTime.now());
   final heightCont = TextEditingController();
   final weightCont = TextEditingController();
   bool isHeightEmpty = false;
   bool isWeightEmpty = false;
+
+  void initData() async {
+    final users = FirebaseFirestore.instance.collection('users').doc(uid);
+    var weights = users.collection('weight');
+    var v = await weights.doc(date).get();
+    var m = v.data() as Map;
+
+    if (!mounted) return;
+    if (m.isNotEmpty) {
+      showWarningDialog(
+        context,
+        "이미 입력한 값이 존재합니다.\n새로 입력하시겠습니까?",
+        hasCancel: true,
+        oneMorePop: true,
+      );
+    }
+  }
+
+  @override
+  void initState() {
+    heightCont.text = userHeight.toString();
+    initData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +85,7 @@ class _WeightInputScreenState extends State<WeightInputScreen> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (heightCont.text == "" || weightCont.text == "") {
                           if (heightCont.text == "") {
                             showWarningDialog(
@@ -74,15 +102,23 @@ class _WeightInputScreenState extends State<WeightInputScreen> {
                           double height = double.parse(heightCont.text);
                           double weight = double.parse(weightCont.text);
                           double bmi = weight / (height * height * 0.01 * 0.01);
+                          bmi = double.parse(bmi.toStringAsFixed(2));
 
-                          print("$height $weight $bmi");
+                          userHeight = height;
+                          await UserManager.setProfile(
+                              uid, userAge, userGender, height);
+                          await InputManager.setWeight(
+                              uid, date, height, weight, bmi);
 
+                          print("$date $height $weight $bmi $userHeight");
+
+                          if (!mounted) return;
                           if (bmi < 18.5) {
                             showResultDialog(
                               context,
                               "저체중",
                               "danger",
-                              "키 : $height cm\n몸무게 : $weight kg\nBMI : ${bmi.toStringAsFixed(2)} %",
+                              "키 : $height cm\n몸무게 : $weight kg\nBMI : $bmi %",
                               const WeightResultScreen(),
                             );
                           } else if (bmi >= 18.5 && bmi <= 22.9) {
@@ -90,7 +126,7 @@ class _WeightInputScreenState extends State<WeightInputScreen> {
                               context,
                               "정상 체중",
                               "safe",
-                              "키 : $height cm\n몸무게 : $weight kg\nBMI : ${bmi.toStringAsFixed(2)} %",
+                              "키 : $height cm\n몸무게 : $weight kg\nBMI : $bmi %",
                               const WeightResultScreen(),
                             );
                           } else if (bmi >= 23 && bmi <= 24.9) {
@@ -98,7 +134,7 @@ class _WeightInputScreenState extends State<WeightInputScreen> {
                               context,
                               "과체중",
                               "safe",
-                              "키 : $height cm\n몸무게 : $weight kg\nBMI : ${bmi.toStringAsFixed(2)} %",
+                              "키 : $height cm\n몸무게 : $weight kg\nBMI : $bmi %",
                               const WeightResultScreen(),
                             );
                           } else if (bmi >= 25 && bmi <= 29.9) {
@@ -106,7 +142,7 @@ class _WeightInputScreenState extends State<WeightInputScreen> {
                               context,
                               "경도비만",
                               "warn",
-                              "키 : $height cm\n몸무게 : $weight kg\nBMI : ${bmi.toStringAsFixed(2)} %",
+                              "키 : $height cm\n몸무게 : $weight kg\nBMI : $bmi %",
                               const WeightResultScreen(),
                             );
                           } else if (bmi >= 30) {
@@ -114,7 +150,7 @@ class _WeightInputScreenState extends State<WeightInputScreen> {
                               context,
                               "고도비만",
                               "danger",
-                              "키 : $height cm\n몸무게 : $weight kg\nBMI : ${bmi.toStringAsFixed(2)} %",
+                              "키 : $height cm\n몸무게 : $weight kg\nBMI : $bmi %",
                               const WeightResultScreen(),
                             );
                           } else {

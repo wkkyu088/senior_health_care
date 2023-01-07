@@ -31,13 +31,14 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (BuildContext context) =>
-                  const BottomNavBar(startIndex: 2)));
-    } else {
+              builder: (context) => const BottomNavBar(startIndex: 1)));
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (BuildContext context) => const LoginScreen()));
+              builder: (context) => const BottomNavBar(startIndex: 2)));
+    } else {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (context) => const LoginScreen()));
     }
   }
 

@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:senior_health_care/screens/resultScreens/blood_sugar_result.dart';
+import 'package:senior_health_care/utils/firestore.dart';
 import 'package:senior_health_care/widgets/common_input_widget.dart';
 import 'package:senior_health_care/widgets/custom_appbar.dart';
 import 'package:senior_health_care/widgets/custom_dialog.dart';
@@ -14,11 +17,35 @@ class BloodSugarInputScreen extends StatefulWidget {
 }
 
 class _BloodSugarInputScreenState extends State<BloodSugarInputScreen> {
+  String date = DateFormat('yyyyMMdd').format(DateTime.now());
   int selected = 0;
-  List<bool> selectList = [true, false];
+  List<String> selectName = ["식전", "식후"];
   final valueCont = TextEditingController();
   final memoCont = TextEditingController();
   bool isValueEmpty = false;
+
+  void initData() async {
+    final users = FirebaseFirestore.instance.collection('users').doc(uid);
+    var bloodSugars = users.collection('bloodSugar');
+    var v = await bloodSugars.doc(date).get();
+    var m = v.data() as Map;
+
+    if (!mounted) return;
+    if (m.isNotEmpty) {
+      showWarningDialog(
+        context,
+        "이미 입력한 값이 존재합니다.\n새로 입력하시겠습니까?",
+        hasCancel: true,
+        oneMorePop: true,
+      );
+    }
+  }
+
+  @override
+  void initState() {
+    initData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,13 +58,6 @@ class _BloodSugarInputScreenState extends State<BloodSugarInputScreen> {
       return TextButton(
         onPressed: () {
           selected = idx;
-          for (var i = 0; i < selectList.length; i++) {
-            if (i == idx) {
-              selectList[i] = true;
-            } else {
-              selectList[i] = false;
-            }
-          }
           setState(() {});
         },
         style: TextButton.styleFrom(
@@ -70,9 +90,9 @@ class _BloodSugarInputScreenState extends State<BloodSugarInputScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  radioButton("식전", 0),
+                  radioButton(selectName[0], 0),
                   const SizedBox(width: 10),
-                  radioButton("식후", 1),
+                  radioButton(selectName[1], 1),
                 ],
               ),
               const SizedBox(height: 30),
@@ -96,7 +116,7 @@ class _BloodSugarInputScreenState extends State<BloodSugarInputScreen> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextButton(
-                      onPressed: () {
+                      onPressed: () async {
                         if (valueCont.text == "") {
                           showWarningDialog(
                               context, "입력하지 않은 필수 값이 있습니다.\n다시 확인해주세요!");
@@ -105,8 +125,13 @@ class _BloodSugarInputScreenState extends State<BloodSugarInputScreen> {
                         } else {
                           int value = int.parse(valueCont.text);
 
-                          print("$selected $value ${memoCont.text}");
+                          print(
+                              "$date ${selectName[selected]} $value ${memoCont.text}");
 
+                          await InputManager.setBloodSugar(uid, date,
+                              selectName[selected], value, memoCont.text);
+
+                          if (!mounted) return;
                           if (selected == 0) {
                             if (value < 100) {
                               showResultDialog(
