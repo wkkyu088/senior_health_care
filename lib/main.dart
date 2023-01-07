@@ -25,9 +25,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // 기본 상단바, 네비게이션바 색 맞추기
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: kWhite,
+      systemNavigationBarColor: kBackground,
       systemNavigationBarIconBrightness: Brightness.dark,
-      statusBarColor: kWhite,
+      statusBarColor: kBackground,
       statusBarIconBrightness: Brightness.dark,
     ));
 
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // 기본 폰트, 색상 등 설정
       theme: ThemeData(
-        scaffoldBackgroundColor: kWhite,
+        scaffoldBackgroundColor: kBackground,
         fontFamily: 'PretendardM',
         colorScheme: ColorScheme(
           brightness: Brightness.light,
@@ -53,8 +53,8 @@ class MyApp extends StatelessWidget {
           onSecondary: kGrey,
           error: kMain,
           onError: kMain,
-          background: kWhite,
-          onBackground: kWhite,
+          background: kBackground,
+          onBackground: kBackground,
           surface: kGrey,
           onSurface: kGrey,
         ),
@@ -101,7 +101,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     Widget bottomNavBar() {
       return Container(
         height: 70,
-        color: kWhite,
+        color: kBackground,
         child: BottomNavigationBar(
           backgroundColor: Colors.transparent,
           elevation: 0,

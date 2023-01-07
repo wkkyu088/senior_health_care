@@ -21,7 +21,7 @@ AppBar customAppBar(title, context, {hasBack = true}) {
             icon: Icon(Icons.arrow_back_rounded, color: kBlack, size: 24))
         : Container(),
     centerTitle: true,
-    backgroundColor: kWhite,
+    backgroundColor: kBackground,
     elevation: 0,
   );
 }

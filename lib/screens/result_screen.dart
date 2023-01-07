@@ -20,6 +20,7 @@ class _ResultScreenState extends State<ResultScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kBackground,
       appBar: customAppBar("분석보기", context, hasBack: false),
       body: Container(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),

@@ -11,6 +11,7 @@ Color kWhite = const Color(0xFFFEFEFE);
 Color kBlack = const Color(0xFF212121);
 Color kGrey = const Color(0xFFBFBFBF);
 Color kLightGrey = const Color(0xFFDFDFDF);
+Color kBackground = const Color(0xFFFAFAFA);
 
 Color kDanger = Color(0xFFD74E55);
 Color kWarning = Color(0xFFF9BB5C);
