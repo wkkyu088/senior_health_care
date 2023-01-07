@@ -123,7 +123,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     TextButton(
                       onPressed: () {
-                        MethodEmail.signInWithEmail(emailCont, pwCont, context);
+                        MethodEmail.signInWithEmail(
+                            emailCont.text, pwCont.text, context);
                       },
                       style: TextButton.styleFrom(
                         primary: kWhite,

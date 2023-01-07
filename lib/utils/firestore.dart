@@ -9,17 +9,17 @@ class UserManager {
   static final users = FirebaseFirestore.instance.collection('users');
 
   // 유저 프로필 정보 설정하기
-  static setProfile(userId, ageCont, isMale, heightCont) async {
+  static setProfile(userId, age, isMale, height) async {
     await users.doc(userId).set({
-      'age': int.parse(ageCont.text),
+      'age': age,
       'gender': isMale,
-      'height': double.parse(heightCont.text),
+      'height': height,
     });
 
     uid = userId;
-    userAge = int.parse(ageCont.text);
+    userAge = age;
     userGender = isMale;
-    userHeight = double.parse(heightCont.text);
+    userHeight = height;
 
     print(uid);
     print(userAge);

@@ -12,17 +12,15 @@ import 'package:senior_health_care/widgets/custom_dialog.dart';
 
 class MethodEmail {
   // 이메일로 가입
-  static signUpWithEmail(
-      emailCont, pwCont, ageCont, isMale, heightCont, context) async {
+  static signUpWithEmail(email, pw, age, isMale, height, context) async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-              email: emailCont.text, password: pwCont.text);
+          .createUserWithEmailAndPassword(email: email, password: pw);
       if (userCredential.user != null) {
         print("회원가입 성공");
         Fluttertoast.showToast(msg: "회원가입 성공");
         await UserManager.setProfile(
-            userCredential.user!.uid, ageCont, isMale, heightCont);
+            userCredential.user!.uid, age, isMale, height);
 
         Navigator.push(
             context,
@@ -46,11 +44,10 @@ class MethodEmail {
   }
 
   // 이메일로 로그인
-  static signInWithEmail(emailCont, pwCont, context) async {
+  static signInWithEmail(email, pw, context) async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(
-              email: emailCont.text, password: pwCont.text);
+          .signInWithEmailAndPassword(email: email, password: pw);
       if (userCredential.user != null) {
         print("로그인 성공");
         Fluttertoast.showToast(msg: "로그인 성공");
@@ -126,8 +123,8 @@ class MethodGoogle {
   }
 
   // 이메일 가입이 아닐 때 (추후 이동 필요)
-  static signUpWithGoogle(context, userId, ageCont, isMale, heightCont) async {
-    await UserManager.setProfile(userId, ageCont, isMale, heightCont);
+  static signUpWithGoogle(context, userId, age, isMale, height) async {
+    await UserManager.setProfile(userId, age, isMale, height);
 
     Navigator.push(
         context,

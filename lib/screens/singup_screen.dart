@@ -304,29 +304,33 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   children: [
                     TextButton(
                       onPressed: () async {
-                        print(int.parse(ageCont.text));
-                        print(double.parse(heightCont.text));
-                        if (int.parse(ageCont.text) < 1 ||
-                            int.parse(ageCont.text) > 120) {
+                        String email = emailCont.text;
+                        String pw = pwCont.text;
+                        String pwCheck = pwCheckCont.text;
+                        int age = int.parse(ageCont.text);
+                        double height = double.parse(heightCont.text);
+
+                        print(age);
+                        print(height);
+                        if (age < 1 || age > 120) {
                           showWarningDialog(
                               context, "나이 값이 범위 밖입니다.\n(1 ~ 120)");
-                        } else if (double.parse(heightCont.text) < 80.0 ||
-                            double.parse(heightCont.text) > 250.0) {
+                        } else if (height < 80.0 || height > 250.0) {
                           showWarningDialog(
                               context, "키 값이 범위 밖입니다.\n(80.0 ~ 250.0)");
                         } else {
                           if (widget.isEmail) {
                             // 이메일 가입이라면
-                            if (pwCont.text != pwCheckCont.text) {
+                            if (pw != pwCheck) {
                               showWarningDialog(context, "비밀번호가 일치하지 않습니다.");
                             } else {
-                              MethodEmail.signUpWithEmail(emailCont, pwCont,
-                                  ageCont, isMale, heightCont, context);
+                              MethodEmail.signUpWithEmail(
+                                  email, pw, age, isMale, height, context);
                             }
                           } else {
                             // 이메일 가입이 아니라면
-                            MethodGoogle.signUpWithGoogle(context,
-                                widget.userId, ageCont, isMale, heightCont);
+                            MethodGoogle.signUpWithGoogle(
+                                context, widget.userId, age, isMale, height);
                           }
                         }
                       },
