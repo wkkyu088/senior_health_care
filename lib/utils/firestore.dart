@@ -100,16 +100,17 @@ class InputManager {
   }
 
   // 혈당 입력하기
-  static setBloodSugar(userId, date, term, value, memo) async {
+  static setBloodSugar(userId, date, term, before, after, memo) async {
     final bloodSugars = users.doc(userId).collection('bloodSugar');
 
     await bloodSugars.doc(date).set({
       'term': term,
-      'value': value,
+      'before': before,
+      'after': after,
       'memo': memo,
     });
 
-    print("------------- $date : 혈당 입력 ($term, $value, $memo)");
+    print("------------- $date : 혈당 입력 ($term, $before, $after, $memo)");
   }
 
   // 몸무게 입력하기

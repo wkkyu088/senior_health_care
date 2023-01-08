@@ -19,10 +19,12 @@ class BloodSugarInputScreen extends StatefulWidget {
 class _BloodSugarInputScreenState extends State<BloodSugarInputScreen> {
   String date = DateFormat('yyyyMMdd').format(DateTime.now());
   int selected = 0;
-  List<String> selectName = ["식전", "식후"];
-  final valueCont = TextEditingController();
+  List<String> selectName = ["아침", "점심", "저녁", "밤"];
+  final beforeCont = TextEditingController();
+  final afterCont = TextEditingController();
   final memoCont = TextEditingController();
-  bool isValueEmpty = false;
+  bool isBeforeEmpty = false;
+  bool isAfterEmpty = false;
 
   void initData() async {
     final users = FirebaseFirestore.instance.collection('users').doc(uid);
@@ -62,7 +64,7 @@ class _BloodSugarInputScreenState extends State<BloodSugarInputScreen> {
         },
         style: TextButton.styleFrom(
           primary: kGrey,
-          backgroundColor: selected == idx ? kMain : kWhite,
+          backgroundColor: selected == idx ? kMain : kBackground,
           shape: RoundedRectangleBorder(
             side: BorderSide(color: selected == idx ? kMain : kGrey, width: 1),
             borderRadius: kBorderRadiusS,
@@ -87,24 +89,46 @@ class _BloodSugarInputScreenState extends State<BloodSugarInputScreen> {
           child: Column(
             children: [
               description("측정 시기를 선택해주세요."),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Column(
                 children: [
-                  radioButton(selectName[0], 0),
-                  const SizedBox(width: 10),
-                  radioButton(selectName[1], 1),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      radioButton(selectName[0], 0),
+                      const SizedBox(width: 10),
+                      radioButton(selectName[1], 1),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      radioButton(selectName[2], 2),
+                      const SizedBox(width: 10),
+                      radioButton(selectName[3], 3),
+                    ],
+                  ),
                 ],
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 20),
               customField(
-                "혈당 값을 입력해주세요.",
-                valueCont,
+                "식사 전 혈당 값을 입력해주세요.",
+                beforeCont,
                 Icons.water_drop_rounded,
                 "mg/dL",
                 "80",
-                isValueEmpty,
+                isBeforeEmpty,
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 10),
+              customField(
+                "식사 후 혈당 값을 입력해주세요.",
+                afterCont,
+                Icons.water_drop_rounded,
+                "mg/dL",
+                "140",
+                isAfterEmpty,
+              ),
+              const SizedBox(height: 20),
               customMultiField(
                 screenWidth,
                 "오늘 식단 등을 메모해주세요. (선택)",
@@ -117,77 +141,61 @@ class _BloodSugarInputScreenState extends State<BloodSugarInputScreen> {
                   children: [
                     TextButton(
                       onPressed: () async {
-                        if (valueCont.text == "") {
+                        if (beforeCont.text == "" || afterCont.text == "") {
                           showWarningDialog(
                               context, "입력하지 않은 필수 값이 있습니다.\n다시 확인해주세요!");
-                          isValueEmpty = true;
-                          setState(() {});
+                          if (beforeCont.text == "") {
+                            isBeforeEmpty = true;
+                            setState(() {});
+                          }
+                          if (afterCont.text == "") {
+                            isAfterEmpty = true;
+                            setState(() {});
+                          }
                         } else {
-                          int value = int.parse(valueCont.text);
+                          int before = int.parse(beforeCont.text);
+                          int after = int.parse(afterCont.text);
 
                           print(
-                              "$date ${selectName[selected]} $value ${memoCont.text}");
+                              "$date ${selectName[selected]} $before $after ${memoCont.text}");
 
-                          await InputManager.setBloodSugar(uid, date,
-                              selectName[selected], value, memoCont.text);
+                          await InputManager.setBloodSugar(
+                              uid,
+                              date,
+                              selectName[selected],
+                              before,
+                              after,
+                              memoCont.text);
 
                           if (!mounted) return;
-                          if (selected == 0) {
-                            if (value < 100) {
-                              showResultDialog(
-                                context,
-                                "정상",
-                                "safe",
-                                "식사 전\n혈당 값 : $value mg/dL",
-                                const BloodSugarResultScreen(),
-                              );
-                            } else if (value >= 100 && value <= 125) {
-                              showResultDialog(
-                                context,
-                                "당뇨 전단계",
-                                "warn",
-                                "식사 전\n혈당 값 : $value mg/dL",
-                                const BloodSugarResultScreen(),
-                              );
-                            } else if (value >= 126) {
-                              showResultDialog(
-                                context,
-                                "당뇨병",
-                                "danger",
-                                "식사 전\n혈당 값 : $value mg/dL",
-                                const BloodSugarResultScreen(),
-                              );
-                            } else {
-                              showWarningDialog(context, "측정 불가");
-                            }
+
+                          if (before < 100 || after < 140) {
+                            showResultDialog(
+                              context,
+                              "정상",
+                              "safe",
+                              "식사 전 혈당 값 : $before mg/dL\n식사 후 혈당 값 : $after mg/dL",
+                              const BloodSugarResultScreen(),
+                            );
+                          } else if ((before >= 100 && before <= 125) ||
+                              (after >= 140 && after <= 199)) {
+                            showResultDialog(
+                              context,
+                              "당뇨 전단계",
+                              "warn",
+                              "식사 전 혈당 값 : $before mg/dL\n식사 후 혈당 값 : $after mg/dL",
+                              const BloodSugarResultScreen(),
+                            );
+                          } else if (before >= 126 || after >= 200) {
+                            showResultDialog(
+                              context,
+                              "당뇨병",
+                              "danger",
+                              "식사 전 혈당 값 : $before mg/dL\n식사 후 혈당 값 : $after mg/dL",
+                              const BloodSugarResultScreen(),
+                            );
                           } else {
-                            if (value < 140) {
-                              showResultDialog(
-                                context,
-                                "정상",
-                                "safe",
-                                "식사 후\n혈당 값 : $value mg/dL",
-                                const BloodSugarResultScreen(),
-                              );
-                            } else if (value >= 140 && value <= 199) {
-                              showResultDialog(
-                                context,
-                                "당뇨 전단계",
-                                "warn",
-                                "식사 후\n혈당 값 : $value mg/dL",
-                                const BloodSugarResultScreen(),
-                              );
-                            } else if (value >= 200) {
-                              showResultDialog(
-                                context,
-                                "당뇨병",
-                                "danger",
-                                "식사 후\n혈당 값 : $value mg/dL",
-                                const BloodSugarResultScreen(),
-                              );
-                            } else {
-                              showWarningDialog(context, "측정 불가");
-                            }
+                            showWarningDialog(context, "측정 불가");
                           }
                         }
                       },

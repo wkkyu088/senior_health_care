@@ -62,7 +62,7 @@ class _HeartRateInputScreenState extends State<HeartRateInputScreen> {
         },
         style: TextButton.styleFrom(
           primary: kGrey,
-          backgroundColor: selected == idx ? kMain : kWhite,
+          backgroundColor: selected == idx ? kMain : kBackground,
           shape: RoundedRectangleBorder(
             side: BorderSide(color: selected == idx ? kMain : kGrey, width: 1),
             borderRadius: kBorderRadiusS,
