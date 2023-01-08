@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 import '../../constants.dart';
 
@@ -67,9 +68,8 @@ Widget inputButton(icon, title, value, screen, color, context) {
                     height: 50,
                     padding:
                         const EdgeInsets.only(left: 10, right: 10, bottom: 20),
-                    child: CircularProgressIndicator(
-                      color: kMain,
-                    ),
+                    child: LoadingAnimationWidget.waveDots(
+                        color: kWhite, size: 30),
                   ),
                 ],
               ),
