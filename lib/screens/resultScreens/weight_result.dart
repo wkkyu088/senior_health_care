@@ -114,7 +114,7 @@ class _WeightResultScreenState extends State<WeightResultScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          chartLegend(Colors.red, "BMI"),
+                          chartLegend(kW, "BMI"),
                         ],
                       ),
                     ),
@@ -318,7 +318,7 @@ class _WeightResultScreenState extends State<WeightResultScreen> {
                 FlSpot(3.5, bmiMonthlyList[1]),
                 FlSpot(4.5, bmiMonthlyList[0]),
               ],
-        Colors.red,
+        kW,
       ),
     ];
   }

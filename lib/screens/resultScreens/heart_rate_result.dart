@@ -116,7 +116,7 @@ class _HeartRateResultScreenState extends State<HeartRateResultScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          chartLegend(Colors.red, "심박수"),
+                          chartLegend(kHR, "심박수"),
                         ],
                       ),
                     ),
@@ -323,7 +323,7 @@ class _HeartRateResultScreenState extends State<HeartRateResultScreen> {
                 FlSpot(3.5, valueWeeklyList[1]),
                 FlSpot(4.5, valueWeeklyList[0]),
               ],
-        Colors.red,
+        kHR,
       ),
     ];
   }
