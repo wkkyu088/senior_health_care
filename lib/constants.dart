@@ -13,9 +13,14 @@ Color kGrey = const Color(0xFFBFBFBF);
 Color kLightGrey = const Color(0xFFDFDFDF);
 Color kBackground = const Color(0xFFFAFAFA);
 
-Color kDanger = Color(0xFFD74E55);
-Color kWarning = Color(0xFFF9BB5C);
-Color kSafe = Color(0xFF5AA647);
+Color kDanger = const Color(0xFFD74E55);
+Color kWarning = const Color(0xFFF9BB5C);
+Color kSafe = const Color(0xFF5AA647);
+
+Color kBP = const Color(0xFF64B5F6);
+Color kBS = const Color(0xFFE57373);
+Color kW = const Color(0xFFFFB74D);
+Color kHR = const Color(0xFF4DB6AC);
 
 // Font Size
 double kXL = 22;

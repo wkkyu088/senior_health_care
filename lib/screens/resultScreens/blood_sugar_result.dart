@@ -126,9 +126,9 @@ class _BloodSugarResultScreenState extends State<BloodSugarResultScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          chartLegend(Colors.red, "혈당 값 (식사 전)"),
+                          chartLegend(kDanger, "혈당 값 (식사 전)"),
                           const SizedBox(width: 10),
-                          chartLegend(Colors.orange, "혈당 값 (식사 후)"),
+                          chartLegend(kBS.withRed(255), "혈당 값 (식사 후)"),
                         ],
                       ),
                     ),
@@ -335,7 +335,7 @@ class _BloodSugarResultScreenState extends State<BloodSugarResultScreen> {
                 FlSpot(3.5, beforeMonthlyList[1]),
                 FlSpot(4.5, beforeMonthlyList[0]),
               ],
-        Colors.red,
+        kDanger,
       ),
       lineChartBarData(
         selectedList[0]
@@ -354,7 +354,7 @@ class _BloodSugarResultScreenState extends State<BloodSugarResultScreen> {
                 FlSpot(3.5, afterMonthlyList[1]),
                 FlSpot(4.5, afterMonthlyList[0]),
               ],
-        Colors.orange,
+        kBS.withRed(255),
       ),
     ];
   }

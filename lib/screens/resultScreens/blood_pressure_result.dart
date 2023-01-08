@@ -137,11 +137,11 @@ class _BloodPressureResultScreenState extends State<BloodPressureResultScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          chartLegend(Colors.red, "수축기 혈압 (SYS)"),
+                          chartLegend(kBP, "수축기 혈압 (SYS)"),
                           const SizedBox(width: 10),
-                          chartLegend(Colors.orange, "이완기 혈압 (DIA)"),
+                          chartLegend(kBP.withBlue(180), "이완기 혈압 (DIA)"),
                           const SizedBox(width: 10),
-                          chartLegend(Colors.lightGreen, "분당 맥박수 (PUL)"),
+                          chartLegend(kBP.withBlue(50), "분당 맥박수 (PUL)"),
                         ],
                       ),
                     ),
@@ -352,7 +352,7 @@ class _BloodPressureResultScreenState extends State<BloodPressureResultScreen> {
                 FlSpot(3.5, sysMonthlyList[1]),
                 FlSpot(4.5, sysMonthlyList[0]),
               ],
-        Colors.red,
+        kBP,
       ),
       lineChartBarData(
         selectedList[0]
@@ -371,7 +371,7 @@ class _BloodPressureResultScreenState extends State<BloodPressureResultScreen> {
                 FlSpot(3.5, diaMonthlyList[1]),
                 FlSpot(4.5, diaMonthlyList[0]),
               ],
-        Colors.orange,
+        kBP.withBlue(180),
       ),
       lineChartBarData(
         selectedList[0]
@@ -390,7 +390,7 @@ class _BloodPressureResultScreenState extends State<BloodPressureResultScreen> {
                 FlSpot(3.5, pulMonthlyList[1]),
                 FlSpot(4.5, pulMonthlyList[0]),
               ],
-        Colors.lightGreen,
+        kBP.withBlue(50),
       ),
     ];
   }
