@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../constants.dart';
+import '../../constants.dart';
 
 Widget inputButton(icon, title, value, screen, color, context) {
   Map<dynamic, dynamic> data = {};

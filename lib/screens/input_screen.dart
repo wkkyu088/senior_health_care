@@ -6,9 +6,9 @@ import 'package:senior_health_care/screens/inputScreens/heart_rate_input.dart';
 import 'package:senior_health_care/screens/inputScreens/weight_input.dart';
 import 'package:senior_health_care/utils/firestore.dart';
 import 'package:senior_health_care/widgets/custom_appbar.dart';
-import 'package:senior_health_care/widgets/input_at_once_button.dart';
-import 'package:senior_health_care/widgets/input_buttons.dart';
-import 'package:senior_health_care/widgets/input_date_bar.dart';
+import 'package:senior_health_care/widgets/input/input_at_once_button.dart';
+import 'package:senior_health_care/widgets/input/input_buttons.dart';
+import 'package:senior_health_care/widgets/input/input_date_bar.dart';
 
 import '../constants.dart';
 

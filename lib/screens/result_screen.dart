@@ -3,8 +3,8 @@ import 'package:senior_health_care/screens/resultScreens/blood_pressure_result.d
 import 'package:senior_health_care/screens/resultScreens/blood_sugar_result.dart';
 import 'package:senior_health_care/screens/resultScreens/heart_rate_result.dart';
 import 'package:senior_health_care/screens/resultScreens/weight_result.dart';
-import 'package:senior_health_care/widgets/result_at_once_button.dart';
-import 'package:senior_health_care/widgets/result_buttons.dart';
+import 'package:senior_health_care/widgets/result/result_at_once_button.dart';
+import 'package:senior_health_care/widgets/result/result_buttons.dart';
 import 'package:senior_health_care/widgets/custom_appbar.dart';
 
 import '../constants.dart';
@@ -26,7 +26,7 @@ class _ResultScreenState extends State<ResultScreen> {
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
         child: Column(
           children: [
-            getAllResultButton(context),
+            // getAllResultButton(context),
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

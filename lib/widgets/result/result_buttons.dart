@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
+import '../../constants.dart';
 
-Widget resultButton(icon, title, screen, color1, context) {
+Widget resultButton(icon, title, screen, color, context) {
   return InkWell(
     onTap: () {
       Navigator.push(context, MaterialPageRoute(builder: (context) => screen));
@@ -27,15 +27,15 @@ Widget resultButton(icon, title, screen, color1, context) {
             height: 190,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: color1.withOpacity(0.9),
+              color: kWhite,
               borderRadius: kBorderRadiusM,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(icon, color: kWhite, size: 50),
+                Icon(icon, color: color, size: 50),
                 const SizedBox(height: 10),
-                Text(title, style: TextStyle(fontSize: kM - 1, color: kWhite)),
+                Text(title, style: TextStyle(fontSize: kM - 1, color: color)),
               ],
             ),
           ),

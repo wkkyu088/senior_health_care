@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:senior_health_care/screens/resultScreens/weight_result.dart';
 import 'package:senior_health_care/utils/firestore.dart';
-import 'package:senior_health_care/widgets/common_input_widget.dart';
+import 'package:senior_health_care/widgets/input/common_input_widget.dart';
 import 'package:senior_health_care/widgets/custom_appbar.dart';
 import 'package:senior_health_care/widgets/custom_dialog.dart';
 

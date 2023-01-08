@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:senior_health_care/screens/resultScreens/all_result.dart';
 
-import '../constants.dart';
+import '../../constants.dart';
 
 Widget getAllResultButton(context) {
   return InkWell(
@@ -11,10 +11,10 @@ Widget getAllResultButton(context) {
     },
     child: Container(
       width: MediaQuery.of(context).size.width - 50,
-      height: 90,
+      height: 80,
       alignment: Alignment.center,
       decoration: BoxDecoration(
-        color: kMain,
+        color: kWhite,
         borderRadius: kBorderRadiusM,
         boxShadow: [
           BoxShadow(
@@ -32,9 +32,9 @@ Widget getAllResultButton(context) {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.article_rounded, color: kWhite, size: 30),
+          Icon(Icons.article_rounded, color: kMain, size: 30),
           const SizedBox(width: 10),
-          Text("전체 분석 보기", style: TextStyle(fontSize: kM, color: kWhite)),
+          Text("전체 분석 보기", style: TextStyle(fontSize: kM, color: kMain)),
         ],
       ),
     ),
