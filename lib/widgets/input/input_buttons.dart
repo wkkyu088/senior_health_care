@@ -35,7 +35,7 @@ Widget inputButton(icon, title, value, screen, color, context) {
               ],
             ),
             child: Container(
-              width: MediaQuery.of(context).size.width / 2 - 30,
+              width: MediaQuery.of(context).size.width / 2 - 20,
               height: 190,
               alignment: Alignment.center,
               decoration: BoxDecoration(
@@ -95,7 +95,7 @@ Widget inputButton(icon, title, value, screen, color, context) {
               ],
             ),
             child: Container(
-              width: MediaQuery.of(context).size.width / 2 - 30,
+              width: MediaQuery.of(context).size.width / 2 - 20,
               height: 190,
               alignment: Alignment.center,
               decoration: BoxDecoration(

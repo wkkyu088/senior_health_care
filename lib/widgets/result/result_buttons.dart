@@ -20,26 +20,22 @@ Widget resultButton(icon, title, screen, color, context) {
           ),
         ],
       ),
-      child: Column(
-        children: [
-          Container(
-            width: MediaQuery.of(context).size.width / 2 - 30,
-            height: 190,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: kWhite,
-              borderRadius: kBorderRadiusM,
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(icon, color: color, size: 50),
-                const SizedBox(height: 10),
-                Text(title, style: TextStyle(fontSize: kM - 1, color: color)),
-              ],
-            ),
-          ),
-        ],
+      child: Container(
+        width: MediaQuery.of(context).size.width / 2 - 20,
+        height: 190,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: kWhite,
+          borderRadius: kBorderRadiusM,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, color: color, size: 50),
+            const SizedBox(height: 10),
+            Text(title, style: TextStyle(fontSize: kM - 1, color: color)),
+          ],
+        ),
       ),
     ),
   );

@@ -6,10 +6,10 @@ Widget getAllButton(context) {
   return InkWell(
     onTap: () {},
     child: Container(
-      width: MediaQuery.of(context).size.width - 50,
+      width: MediaQuery.of(context).size.width - 30,
       height: 70,
       alignment: Alignment.center,
-      margin: const EdgeInsets.symmetric(horizontal: 25),
+      margin: const EdgeInsets.symmetric(horizontal: 15),
       decoration: BoxDecoration(
         color: kMain,
         borderRadius: kBorderRadiusM,

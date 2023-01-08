@@ -36,7 +36,7 @@ class _InputScreenState extends State<InputScreen> {
         children: [
           Container(
             width: screenWidth,
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
             child: ListView(
               children: [
                 const InputDateBar(),
