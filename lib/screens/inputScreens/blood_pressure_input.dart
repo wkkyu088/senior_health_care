@@ -62,13 +62,6 @@ class _BloodPressureInputScreenState extends State<BloodPressureInputScreen> {
       return TextButton(
         onPressed: () {
           selected = idx;
-          // for (var i = 0; i < selectList.length; i++) {
-          //   if (i == idx) {
-          //     selectList[i] = true;
-          //   } else {
-          //     selectList[i] = false;
-          //   }
-          // }
           setState(() {});
         },
         style: TextButton.styleFrom(
@@ -78,7 +71,7 @@ class _BloodPressureInputScreenState extends State<BloodPressureInputScreen> {
             side: BorderSide(color: selected == idx ? kMain : kGrey, width: 1),
             borderRadius: kBorderRadiusS,
           ),
-          minimumSize: Size(screenWidth / 2 - 55, 50),
+          minimumSize: Size(screenWidth / 2 - 55, 45),
         ),
         child: Text(
           txt,
@@ -94,7 +87,7 @@ class _BloodPressureInputScreenState extends State<BloodPressureInputScreen> {
         child: Container(
           width: screenWidth,
           height: screenHeight - 60 - statusBarHeight - navigationBarHeight,
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Column(
             children: [
               description("측정 위치를 선택해주세요."),
@@ -102,20 +95,20 @@ class _BloodPressureInputScreenState extends State<BloodPressureInputScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   radioButton(selectName[0], 0),
-                  const SizedBox(width: 10),
+                  const SizedBox(width: 5),
                   radioButton(selectName[1], 1),
                 ],
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 5),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   radioButton(selectName[2], 2),
-                  const SizedBox(width: 10),
+                  const SizedBox(width: 5),
                   radioButton(selectName[3], 3),
                 ],
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 20),
               customField(
                 "수축기 혈압(SYS)을 입력해주세요.",
                 sysCont,
@@ -124,7 +117,7 @@ class _BloodPressureInputScreenState extends State<BloodPressureInputScreen> {
                 "120",
                 isSysEmpty,
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 5),
               customField(
                 "이완기 혈압(DIA)을 입력해주세요.",
                 diaCont,
@@ -133,7 +126,7 @@ class _BloodPressureInputScreenState extends State<BloodPressureInputScreen> {
                 "82",
                 isDiaEmpty,
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 5),
               customField(
                 "분당 맥박수(PUL)를 입력해주세요.",
                 pulCont,

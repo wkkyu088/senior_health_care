@@ -109,7 +109,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           currentIndex: selectedIndex,
           selectedItemColor: kMain,
           unselectedItemColor: kGrey,
-          iconSize: 26,
+          iconSize: 22,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.bar_chart_rounded),

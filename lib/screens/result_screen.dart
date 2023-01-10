@@ -23,11 +23,11 @@ class _ResultScreenState extends State<ResultScreen> {
       backgroundColor: kBackground,
       appBar: customAppBar("분석보기", context, hasBack: false),
       body: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           children: [
             // getAllResultButton(context),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -48,7 +48,7 @@ class _ResultScreenState extends State<ResultScreen> {
                 ),
               ],
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

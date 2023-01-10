@@ -67,7 +67,7 @@ class _HeartRateInputScreenState extends State<HeartRateInputScreen> {
             side: BorderSide(color: selected == idx ? kMain : kGrey, width: 1),
             borderRadius: kBorderRadiusS,
           ),
-          minimumSize: Size(screenWidth / 2 - 55, 50),
+          minimumSize: Size(screenWidth / 2 - 55, 45),
         ),
         child: Text(
           txt,
@@ -83,7 +83,7 @@ class _HeartRateInputScreenState extends State<HeartRateInputScreen> {
         child: Container(
           width: screenWidth,
           height: screenHeight - 60 - statusBarHeight - navigationBarHeight,
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Column(
             children: [
               description("측정 시기를 선택해주세요."),
@@ -91,11 +91,11 @@ class _HeartRateInputScreenState extends State<HeartRateInputScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   radioButton(selectName[0], 0),
-                  const SizedBox(width: 10),
+                  const SizedBox(width: 5),
                   radioButton(selectName[1], 1),
                 ],
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 20),
               customField(
                 "심박수 값을 입력해주세요.",
                 valueCont,

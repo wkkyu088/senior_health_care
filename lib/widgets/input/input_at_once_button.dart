@@ -15,21 +15,16 @@ Widget getAllButton(context) {
         borderRadius: kBorderRadiusM,
         boxShadow: [
           BoxShadow(
-            color: kGrey.withOpacity(0.3),
-            spreadRadius: 1,
-            blurRadius: 12,
+            color: kGrey.withOpacity(0.2),
+            spreadRadius: 3,
+            blurRadius: 10,
           ),
         ],
-        // gradient: const LinearGradient(
-        //   begin: Alignment.topLeft,
-        //   end: Alignment.bottomRight,
-        //   colors: [Colors.blue, Colors.cyan],
-        // ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.widgets_rounded, color: kWhite, size: 30),
+          Icon(Icons.widgets_rounded, color: kWhite, size: 26),
           const SizedBox(width: 10),
           Text("한 번에 불러오기", style: TextStyle(fontSize: kM, color: kWhite)),
         ],

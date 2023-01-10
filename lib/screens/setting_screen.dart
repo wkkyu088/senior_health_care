@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl/intl.dart';
 import 'package:senior_health_care/screens/login_screen.dart';
-import 'package:senior_health_care/screens/resultScreens/blood_pressure_result.dart';
+import 'package:senior_health_care/utils/firestore.dart';
 import 'package:senior_health_care/widgets/custom_appbar.dart';
 import 'package:senior_health_care/widgets/custom_dialog.dart';
 
@@ -23,14 +26,44 @@ class _SettingScreenState extends State<SettingScreen> {
     final double statusBarHeight = MediaQuery.of(context).padding.top;
     final double navigationBarHeight = MediaQuery.of(context).padding.bottom;
 
+    // InputManager.setBloodPressure(uid, "20230105", "왼쪽 팔", 120, 76, 75);
+
+    for (var i = 0; i < 30; i++) {
+      DateTime now = DateTime.now();
+      String date =
+          DateFormat('yyyyMMdd').format(now.subtract(Duration(days: i)));
+
+      // // 혈압
+      // InputManager.setBloodPressure(
+      //     uid,
+      //     date,
+      //     "왼쪽 팔",
+      //     Random().nextInt(40) + 120,
+      //     Random().nextInt(10) + 85,
+      //     Random().nextInt(15) + 70);
+
+      // // 혈당
+      // InputManager.setBloodSugar(uid, date, "아침", Random().nextInt(30) + 100,
+      //     Random().nextInt(50) + 140, "");
+
+      // // 심박수
+      // InputManager.setHeartRate(uid, date, "평상시", Random().nextInt(10) + 60);
+
+      // // 몸무게
+      // double weight = Random().nextDouble() * 5 + 70;
+      // double bmi = weight / (userHeight * userHeight * 0.01 * 0.01);
+      // bmi = double.parse(bmi.toStringAsFixed(2));
+      // InputManager.setWeight(uid, date, userHeight, weight, bmi);
+    }
+
     Widget settingItem(header, body) {
       return Padding(
-        padding: const EdgeInsets.only(bottom: 20),
+        padding: const EdgeInsets.only(bottom: 15),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
               child: Text(
                 header,
                 style: TextStyle(color: kBlack, fontSize: kS),
@@ -38,15 +71,15 @@ class _SettingScreenState extends State<SettingScreen> {
             ),
             Container(
               width: screenWidth,
-              padding: const EdgeInsets.all(18),
+              padding: const EdgeInsets.all(15),
               decoration: BoxDecoration(
                 color: kWhite,
                 borderRadius: kBorderRadiusM,
                 boxShadow: [
                   BoxShadow(
                     color: kGrey.withOpacity(0.25),
-                    spreadRadius: 1,
-                    blurRadius: 12,
+                    spreadRadius: 3,
+                    blurRadius: 10,
                   ),
                 ],
               ),
@@ -59,7 +92,7 @@ class _SettingScreenState extends State<SettingScreen> {
 
     Widget subHeader(txt) {
       return Container(
-        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 6),
         decoration: BoxDecoration(
           color: kMain,
           borderRadius: kBorderRadiusS,
@@ -76,7 +109,7 @@ class _SettingScreenState extends State<SettingScreen> {
       body: Container(
         width: screenWidth,
         height: screenHeight - statusBarHeight - navigationBarHeight - 130,
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -149,6 +182,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 ),
               ],
             ),
+            Text("uid : $uid"),
             // const SizedBox(height: 50),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -160,17 +194,17 @@ class _SettingScreenState extends State<SettingScreen> {
                       "정말 로그아웃 하시겠습니까?",
                       hasCancel: true,
                     );
-                    // print("로그아웃됨");
-                    // Fluttertoast.showToast(msg: "로그아웃 되었습니다.");
-                    // uid = "";
-                    // userAge = 0;
-                    // userGender = true;
-                    // userHeight = 0.0;
-                    // FirebaseAuth.instance.signOut();
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => const LoginScreen()));
+                    print("로그아웃됨");
+                    Fluttertoast.showToast(msg: "로그아웃 되었습니다.");
+                    uid = "";
+                    userAge = 0;
+                    userGender = true;
+                    userHeight = 0.0;
+                    FirebaseAuth.instance.signOut();
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginScreen()));
                   },
                   style: TextButton.styleFrom(
                     primary: kLightGrey,
@@ -211,51 +245,6 @@ class _SettingScreenState extends State<SettingScreen> {
                 ),
               ],
             ),
-            // Text(uid),
-            // Text(userAge.toString()),
-            // Text(userGender.toString()),
-            // Text(userHeight.toString()),
-            // TextButton(
-            //   onPressed: () {
-            //     print("로그아웃됨");
-            //     uid = "";
-            //     userAge = 0;
-            //     userGender = true;
-            //     userHeight = 0.0;
-            //     FirebaseAuth.instance.signOut();
-            //     Fluttertoast.showToast(msg: "로그아웃 되었습니다.");
-            //     Navigator.push(
-            //         context,
-            //         MaterialPageRoute(
-            //             builder: (context) => const LoginScreen()));
-            //   },
-            //   child: Text("로그아웃"),
-            // ),
-            // TextButton(
-            //   onPressed: () {
-            //     showWarningDialog(context, "다이얼로그", hasCancel: true);
-            //   },
-            //   child: Text("show dialog 1"),
-            // ),
-            // TextButton(
-            //   onPressed: () {
-            //     showWarningDialog(context, "다이얼로그",
-            //         hasCancel: true, isCheck: true);
-            //   },
-            //   child: Text("show dialog 2"),
-            // ),
-            // TextButton(
-            //   onPressed: () {
-            //     showResultDialog(
-            //       context,
-            //       "정상 혈압",
-            //       "danger",
-            //       "sys\ndia\npul\n어쩌구저쩌구해서\n정상입니다.",
-            //       const BloodPressureResultScreen(),
-            //     );
-            //   },
-            //   child: Text("show dialog 3"),
-            // ),
           ],
         ),
       ),

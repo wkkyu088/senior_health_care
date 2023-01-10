@@ -56,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen> {
       backgroundColor: kWhite,
       body: Center(
         child: SizedBox(
-          width: screenWidth * 0.6,
+          width: screenWidth * 0.4,
           child: Image.asset('assets/images/logo1.png'),
         ),
       ),

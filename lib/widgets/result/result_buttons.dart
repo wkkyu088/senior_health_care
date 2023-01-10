@@ -14,15 +14,15 @@ Widget resultButton(icon, title, screen, color, context) {
         borderRadius: kBorderRadiusM,
         boxShadow: [
           BoxShadow(
-            color: kGrey.withOpacity(0.3),
-            spreadRadius: 1,
-            blurRadius: 12,
+            color: kGrey.withOpacity(0.2),
+            spreadRadius: 3,
+            blurRadius: 10,
           ),
         ],
       ),
       child: Container(
         width: MediaQuery.of(context).size.width / 2 - 20,
-        height: 190,
+        height: 160,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: kWhite,

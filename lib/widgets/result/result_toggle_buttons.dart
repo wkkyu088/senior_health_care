@@ -16,14 +16,14 @@ Widget resultToggleButtons(selectedList, onPressed) {
     onPressed: onPressed,
     children: [
       Container(
-        width: 100,
-        height: 30,
+        width: 90,
+        height: 25,
         alignment: Alignment.center,
         child: Text("주간", style: TextStyle(fontSize: kXS)),
       ),
       Container(
-        width: 100,
-        height: 30,
+        width: 90,
+        height: 25,
         alignment: Alignment.center,
         child: Text("월간", style: TextStyle(fontSize: kXS)),
       )

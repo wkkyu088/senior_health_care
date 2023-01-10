@@ -29,15 +29,15 @@ Widget inputButton(icon, title, value, screen, color, context) {
               borderRadius: kBorderRadiusM,
               boxShadow: [
                 BoxShadow(
-                  color: kGrey.withOpacity(0.3),
-                  spreadRadius: 1,
-                  blurRadius: 12,
+                  color: kGrey.withOpacity(0.2),
+                  spreadRadius: 3,
+                  blurRadius: 10,
                 ),
               ],
             ),
             child: Container(
               width: MediaQuery.of(context).size.width / 2 - 20,
-              height: 190,
+              height: 160,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: color.withOpacity(0.6),
@@ -47,7 +47,7 @@ Widget inputButton(icon, title, value, screen, color, context) {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: 130,
+                    height: 115,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -64,12 +64,12 @@ Widget inputButton(icon, title, value, screen, color, context) {
                     ),
                   ),
                   Container(
-                    width: 50,
-                    height: 50,
+                    width: 35,
+                    height: 35,
                     padding:
-                        const EdgeInsets.only(left: 10, right: 10, bottom: 20),
+                        const EdgeInsets.only(left: 5, right: 5, bottom: 10),
                     child: LoadingAnimationWidget.waveDots(
-                        color: kWhite, size: 30),
+                        color: kWhite, size: 25),
                   ),
                 ],
               ),
@@ -88,15 +88,15 @@ Widget inputButton(icon, title, value, screen, color, context) {
               borderRadius: kBorderRadiusM,
               boxShadow: [
                 BoxShadow(
-                  color: kGrey.withOpacity(0.3),
-                  spreadRadius: 1,
-                  blurRadius: 12,
+                  color: kGrey.withOpacity(0.2),
+                  spreadRadius: 3,
+                  blurRadius: 10,
                 ),
               ],
             ),
             child: Container(
               width: MediaQuery.of(context).size.width / 2 - 20,
-              height: 190,
+              height: 160,
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 color: data.isEmpty
@@ -108,7 +108,7 @@ Widget inputButton(icon, title, value, screen, color, context) {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: 130,
+                    height: 115,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -125,7 +125,7 @@ Widget inputButton(icon, title, value, screen, color, context) {
                     ),
                   ),
                   Container(
-                    height: 50,
+                    height: 35,
                     padding: const EdgeInsets.only(bottom: 20),
                     child: data.isEmpty
                         ? Text(

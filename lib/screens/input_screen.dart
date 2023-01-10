@@ -36,11 +36,11 @@ class _InputScreenState extends State<InputScreen> {
         children: [
           Container(
             width: screenWidth,
-            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+            padding: const EdgeInsets.symmetric(horizontal: 15),
             child: ListView(
               children: [
                 const InputDateBar(),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
                 Column(
                   children: [
                     Row(
@@ -65,7 +65,7 @@ class _InputScreenState extends State<InputScreen> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -94,7 +94,7 @@ class _InputScreenState extends State<InputScreen> {
             ),
           ),
           Positioned(
-            bottom: 90,
+            bottom: 80,
             child: getAllButton(context),
           ),
         ],

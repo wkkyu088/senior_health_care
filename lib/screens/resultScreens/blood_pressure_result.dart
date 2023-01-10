@@ -107,15 +107,15 @@ class _BloodPressureResultScreenState extends State<BloodPressureResultScreen> {
           child: Column(
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(vertical: 20),
+                padding: const EdgeInsets.symmetric(vertical: 15),
                 decoration: BoxDecoration(
                   color: kWhite,
                   borderRadius: kBorderRadiusM,
                   boxShadow: [
                     BoxShadow(
-                      color: kGrey.withOpacity(0.3),
-                      spreadRadius: 1,
-                      blurRadius: 12,
+                      color: kGrey.withOpacity(0.2),
+                      spreadRadius: 3,
+                      blurRadius: 10,
                     ),
                   ],
                 ),
@@ -137,11 +137,11 @@ class _BloodPressureResultScreenState extends State<BloodPressureResultScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          chartLegend(kBP, "수축기 혈압 (SYS)"),
+                          chartLegend(kBP, "수축기 혈압"),
                           const SizedBox(width: 10),
-                          chartLegend(kBP.withBlue(180), "이완기 혈압 (DIA)"),
+                          chartLegend(kBP.withBlue(180), "이완기 혈압"),
                           const SizedBox(width: 10),
-                          chartLegend(kBP.withBlue(50), "분당 맥박수 (PUL)"),
+                          chartLegend(kBP.withBlue(50), "분당 맥박수"),
                         ],
                       ),
                     ),
@@ -189,7 +189,7 @@ class _BloodPressureResultScreenState extends State<BloodPressureResultScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               Container(
                 height: 100,
                 padding: const EdgeInsets.symmetric(vertical: 20),
@@ -198,15 +198,15 @@ class _BloodPressureResultScreenState extends State<BloodPressureResultScreen> {
                   borderRadius: kBorderRadiusM,
                   boxShadow: [
                     BoxShadow(
-                      color: kGrey.withOpacity(0.3),
-                      spreadRadius: 1,
-                      blurRadius: 12,
+                      color: kGrey.withOpacity(0.2),
+                      spreadRadius: 3,
+                      blurRadius: 10,
                     ),
                   ],
                 ),
                 child: Center(child: Text("지금 상태는?")),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               Container(
                 height: 400,
                 padding: const EdgeInsets.symmetric(vertical: 20),
@@ -215,9 +215,9 @@ class _BloodPressureResultScreenState extends State<BloodPressureResultScreen> {
                   borderRadius: kBorderRadiusM,
                   boxShadow: [
                     BoxShadow(
-                      color: kGrey.withOpacity(0.3),
-                      spreadRadius: 1,
-                      blurRadius: 12,
+                      color: kGrey.withOpacity(0.2),
+                      spreadRadius: 3,
+                      blurRadius: 10,
                     ),
                   ],
                 ),
@@ -231,7 +231,7 @@ class _BloodPressureResultScreenState extends State<BloodPressureResultScreen> {
   }
 
   Widget bottomTitleWidgets(double value, TitleMeta meta) {
-    var style = TextStyle(color: kBlack.withOpacity(0.8), fontSize: 13);
+    var style = TextStyle(color: kBlack.withOpacity(0.8), fontSize: kXS);
     String text;
 
     DateTime now = DateTime.now();
@@ -263,7 +263,7 @@ class _BloodPressureResultScreenState extends State<BloodPressureResultScreen> {
           break;
         case 7:
           text = DateFormat('M/d').format(now);
-          style = TextStyle(color: kMain, fontSize: 13);
+          style = TextStyle(color: kMain, fontSize: kXS);
           break;
         default:
           return Container();
@@ -288,7 +288,7 @@ class _BloodPressureResultScreenState extends State<BloodPressureResultScreen> {
           break;
         case 5:
           text = DateFormat('M/d').format(now);
-          style = TextStyle(color: kMain, fontSize: 13);
+          style = TextStyle(color: kMain, fontSize: kXS);
           break;
         default:
           return Container();
@@ -302,12 +302,12 @@ class _BloodPressureResultScreenState extends State<BloodPressureResultScreen> {
   }
 
   Widget leftTitleWidgets(double value, TitleMeta meta) {
-    var style = TextStyle(
+    var style =
+        TextStyle(color: kGrey, fontSize: kXS - 1, fontFamily: 'PretendardL');
+    var style2 = TextStyle(
         color: kBlack.withOpacity(0.6),
-        fontSize: 13,
+        fontSize: kXS - 1,
         fontFamily: 'PretendardL');
-    var style2 =
-        TextStyle(color: kGrey, fontSize: 12, fontFamily: 'PretendardL');
     String text;
     switch (value.toInt()) {
       case 60:

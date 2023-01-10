@@ -69,7 +69,7 @@ class _BloodSugarInputScreenState extends State<BloodSugarInputScreen> {
             side: BorderSide(color: selected == idx ? kMain : kGrey, width: 1),
             borderRadius: kBorderRadiusS,
           ),
-          minimumSize: Size(screenWidth / 2 - 55, 50),
+          minimumSize: Size(screenWidth / 2 - 55, 45),
         ),
         child: Text(
           txt,
@@ -85,7 +85,7 @@ class _BloodSugarInputScreenState extends State<BloodSugarInputScreen> {
         child: Container(
           width: screenWidth,
           height: screenHeight - 60 - statusBarHeight - navigationBarHeight,
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Column(
             children: [
               description("측정 시기를 선택해주세요."),
@@ -95,16 +95,16 @@ class _BloodSugarInputScreenState extends State<BloodSugarInputScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       radioButton(selectName[0], 0),
-                      const SizedBox(width: 10),
+                      const SizedBox(width: 5),
                       radioButton(selectName[1], 1),
                     ],
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       radioButton(selectName[2], 2),
-                      const SizedBox(width: 10),
+                      const SizedBox(width: 5),
                       radioButton(selectName[3], 3),
                     ],
                   ),
@@ -116,10 +116,10 @@ class _BloodSugarInputScreenState extends State<BloodSugarInputScreen> {
                 beforeCont,
                 Icons.water_drop_rounded,
                 "mg/dL",
-                "80",
+                "100",
                 isBeforeEmpty,
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 5),
               customField(
                 "식사 후 혈당 값을 입력해주세요.",
                 afterCont,

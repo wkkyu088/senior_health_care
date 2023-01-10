@@ -4,7 +4,7 @@ import '../../constants.dart';
 
 Widget description(desc) {
   return Padding(
-    padding: const EdgeInsets.all(15),
+    padding: const EdgeInsets.all(10),
     child: Text(desc, style: TextStyle(fontSize: kS)),
   );
 }
@@ -73,15 +73,15 @@ Widget customMultiField(screenWidth, desc, cont, hint) {
         width: screenWidth - 100,
         child: TextField(
           controller: cont,
-          maxLines: 5,
-          maxLength: 100,
+          maxLines: 3,
+          maxLength: 50,
           keyboardType: TextInputType.text,
           style: TextStyle(fontSize: kS),
           decoration: InputDecoration(
             isCollapsed: true,
             isDense: true,
             contentPadding:
-                const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+                const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: kMain, width: 1),
               borderRadius: kBorderRadiusS,

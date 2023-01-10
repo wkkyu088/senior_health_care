@@ -10,7 +10,7 @@ Widget getAllResultButton(context) {
           MaterialPageRoute(builder: (context) => const AllResultScreen()));
     },
     child: Container(
-      width: MediaQuery.of(context).size.width - 50,
+      width: MediaQuery.of(context).size.width - 30,
       height: 80,
       alignment: Alignment.center,
       decoration: BoxDecoration(
@@ -18,9 +18,9 @@ Widget getAllResultButton(context) {
         borderRadius: kBorderRadiusM,
         boxShadow: [
           BoxShadow(
-            color: kGrey.withOpacity(0.3),
-            spreadRadius: 1,
-            blurRadius: 12,
+            color: kGrey.withOpacity(0.2),
+            spreadRadius: 3,
+            blurRadius: 10,
           ),
         ],
         // gradient: const LinearGradient(

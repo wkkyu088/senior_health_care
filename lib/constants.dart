@@ -23,13 +23,13 @@ Color kW = const Color(0xFFFFB74D);
 Color kHR = const Color(0xFF4DB6AC);
 
 // Font Size
-double kXL = 22;
-double kL = 20;
-double kM = 18;
-double kS = 16;
-double kXS = 14;
+double kXL = 20;
+double kL = 18;
+double kM = 16;
+double kS = 14;
+double kXS = 12;
 
 // Border Radius
-BorderRadius kBorderRadiusL = BorderRadius.circular(28.0);
-BorderRadius kBorderRadiusM = BorderRadius.circular(18.0);
-BorderRadius kBorderRadiusS = BorderRadius.circular(8.0);
+BorderRadius kBorderRadiusL = BorderRadius.circular(24.0);
+BorderRadius kBorderRadiusM = BorderRadius.circular(14.0);
+BorderRadius kBorderRadiusS = BorderRadius.circular(6.0);

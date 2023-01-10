@@ -49,7 +49,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Container(
           height: screenHeight - statusBarHeight - navigationBarHeight,
           width: screenWidth,
-          padding: const EdgeInsets.symmetric(horizontal: 60),
+          padding: const EdgeInsets.symmetric(horizontal: 50),
           margin: EdgeInsets.only(top: statusBarHeight),
           child: Column(
             children: [
@@ -69,10 +69,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           children: [
                             Container(
                               alignment: Alignment.centerLeft,
-                              padding: const EdgeInsets.all(8.0),
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 8, horizontal: 5),
                               child: Text(
                                 "이메일/비밀번호",
-                                style: TextStyle(color: kBlack, fontSize: kXS),
+                                style: TextStyle(color: kBlack, fontSize: kS),
                               ),
                             ),
                             // 이메일 입력 필드
@@ -106,7 +107,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                             // 비밀번호 입력 필드
                             Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 15),
+                              padding: const EdgeInsets.symmetric(vertical: 10),
                               child: TextField(
                                 controller: pwCont,
                                 maxLines: 1,
@@ -138,7 +139,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ),
                             // 비밀번호 확인 입력 필드
                             Padding(
-                              padding: const EdgeInsets.only(bottom: 20),
+                              padding: const EdgeInsets.only(bottom: 15),
                               child: TextField(
                                 controller: pwCheckCont,
                                 maxLines: 1,
@@ -192,15 +193,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     children: [
                       Container(
                         alignment: Alignment.centerLeft,
-                        padding: const EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8, horizontal: 5),
                         child: Text(
                           "사용자 정보",
-                          style: TextStyle(color: kBlack, fontSize: kXS),
+                          style: TextStyle(color: kBlack, fontSize: kS),
                         ),
                       ),
                       // 성별 선택 필드
                       ToggleButtons(
                         isSelected: isSelected,
+                        constraints: const BoxConstraints(),
                         onPressed: (value) {
                           if (value == 0) {
                             isMale = true;
@@ -223,12 +226,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         borderRadius: kBorderRadiusS,
                         children: [
                           Container(
-                            width: (screenWidth - 120) / 2 - 1.5,
+                            width: (screenWidth - 100) / 2 - 1.5,
+                            height: 45,
                             alignment: Alignment.center,
                             child: const Text("남자"),
                           ),
                           Container(
-                            width: (screenWidth - 120) / 2 - 1.5,
+                            width: (screenWidth - 100) / 2 - 1.5,
+                            height: 45,
                             alignment: Alignment.center,
                             child: const Text("여자"),
                           ),
@@ -236,7 +241,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       // 나이 입력 필드
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 15),
+                        padding: const EdgeInsets.symmetric(vertical: 10),
                         child: TextField(
                           controller: ageCont,
                           maxLines: 1,

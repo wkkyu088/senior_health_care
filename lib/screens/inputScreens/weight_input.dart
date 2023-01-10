@@ -60,7 +60,7 @@ class _WeightInputScreenState extends State<WeightInputScreen> {
         child: Container(
           width: screenWidth,
           height: screenHeight - 60 - statusBarHeight - navigationBarHeight,
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Column(
             children: [
               customField(
@@ -71,7 +71,7 @@ class _WeightInputScreenState extends State<WeightInputScreen> {
                 "175.0",
                 isHeightEmpty,
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 20),
               customField(
                 "몸무게를 입력해주세요.",
                 weightCont,

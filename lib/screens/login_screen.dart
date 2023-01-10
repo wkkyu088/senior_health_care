@@ -40,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Container(
           height: screenHeight - statusBarHeight - navigationBarHeight,
           width: screenWidth,
-          padding: const EdgeInsets.symmetric(horizontal: 60),
+          padding: const EdgeInsets.symmetric(horizontal: 50),
           margin: EdgeInsets.only(top: statusBarHeight),
           child: Column(
             children: [
@@ -86,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     // 비밀번호 입력 필드
                     Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 15),
+                      padding: const EdgeInsets.symmetric(vertical: 10),
                       child: TextField(
                         controller: pwCont,
                         maxLines: 1,
@@ -167,8 +167,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   borderRadius: kBorderRadiusS,
                                 ),
                                 dense: true,
-                                contentPadding: const EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 2),
+                                contentPadding:
+                                    const EdgeInsets.symmetric(horizontal: 20),
                                 leading: SizedBox(
                                   height: kM,
                                   child: Image.asset(
@@ -189,8 +189,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                   borderRadius: kBorderRadiusS,
                                 ),
                                 dense: true,
-                                contentPadding: const EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 2),
+                                contentPadding:
+                                    const EdgeInsets.symmetric(horizontal: 20),
                                 leading: SizedBox(
                                   height: kS,
                                   child: Image.asset(
@@ -224,7 +224,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                 children: [
                                   Text(
                                     "처음이신가요? ",
-                                    style: TextStyle(color: kBlack),
+                                    style: TextStyle(
+                                      color: kBlack,
+                                      fontSize: kS,
+                                    ),
                                   ),
                                   Container(
                                     decoration: BoxDecoration(
@@ -237,6 +240,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       style: TextStyle(
                                         color: kBlack,
                                         fontFamily: 'PretendardB',
+                                        fontSize: kS,
                                       ),
                                     ),
                                   ),

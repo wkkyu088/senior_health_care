@@ -30,12 +30,12 @@ class _MainScreenState extends State<MainScreen> {
               Container(
                 alignment: Alignment.centerLeft,
                 padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 5),
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                 child: Text(
                   "나의\n건강 상태는?",
                   style: TextStyle(
                     fontFamily: 'PretendardB',
-                    fontSize: 26,
+                    fontSize: 24,
                     color: kBlack,
                   ),
                 ),
@@ -48,13 +48,13 @@ class _MainScreenState extends State<MainScreen> {
                   text: TextSpan(
                       style: TextStyle(
                         fontFamily: 'PretendardB',
-                        fontSize: 48,
+                        fontSize: 40,
                         color: kSafe,
                         height: 0.6,
                       ),
                       children: const [
                         TextSpan(text: "92"),
-                        TextSpan(text: "점", style: TextStyle(fontSize: 30)),
+                        TextSpan(text: "점", style: TextStyle(fontSize: 26)),
                       ]),
                 ),
               ),
@@ -114,7 +114,7 @@ class _MainScreenState extends State<MainScreen> {
               "점수 변화",
               style: TextStyle(
                 fontFamily: 'PretendardB',
-                fontSize: 26,
+                fontSize: 24,
                 color: kBlack,
               ),
             ),
@@ -186,7 +186,7 @@ class _MainScreenState extends State<MainScreen> {
               "60대 여성 평균",
               style: TextStyle(
                 fontFamily: 'PretendardB',
-                fontSize: 26,
+                fontSize: 24,
                 color: kBlack,
               ),
             ),
@@ -202,11 +202,11 @@ class _MainScreenState extends State<MainScreen> {
           ),
           DataTable(
             headingTextStyle: TextStyle(
-                fontSize: 12, color: kGrey, fontFamily: 'PretendardM'),
+                fontSize: 11, color: kGrey, fontFamily: 'PretendardM'),
             dataTextStyle: TextStyle(
-                fontSize: 13, color: kBlack, fontFamily: 'PretendardM'),
-            headingRowHeight: 30,
-            dataRowHeight: 48,
+                fontSize: 12, color: kBlack, fontFamily: 'PretendardM'),
+            headingRowHeight: 15,
+            dataRowHeight: 35,
             dividerThickness: 0,
             border: TableBorder.all(color: kWhite, width: 0),
             columnSpacing: 35,
@@ -224,10 +224,10 @@ class _MainScreenState extends State<MainScreen> {
             rows: [
               DataRow(
                 cells: [
-                  DataCell(Center(child: Text('혈압'))),
-                  DataCell(Center(child: Text("120/86"))),
+                  DataCell(Center(child: Text('혈압 (SYS)'))),
+                  DataCell(Center(child: Text("120"))),
                   DataCell(Center(
-                      child: Text("140/76", style: TextStyle(color: kDanger)))),
+                      child: Text("140", style: TextStyle(color: kDanger)))),
                   DataCell(
                     Center(
                       child: RichText(
@@ -241,6 +241,32 @@ class _MainScreenState extends State<MainScreen> {
                             TextSpan(text: "▲"),
                             TextSpan(
                                 text: " 20", style: TextStyle(fontSize: 12)),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              DataRow(
+                cells: [
+                  DataCell(Center(child: Text('혈압 (DIA)'))),
+                  DataCell(Center(child: Text("86"))),
+                  DataCell(Center(
+                      child: Text("76", style: TextStyle(color: kDanger)))),
+                  DataCell(
+                    Center(
+                      child: RichText(
+                        text: TextSpan(
+                          style: TextStyle(
+                            fontSize: 10,
+                            color: kDanger,
+                            fontFamily: 'PretendardM',
+                          ),
+                          children: const [
+                            TextSpan(text: "▼"),
+                            TextSpan(
+                                text: " 10", style: TextStyle(fontSize: 12)),
                           ],
                         ),
                       ),
@@ -336,16 +362,16 @@ class _MainScreenState extends State<MainScreen> {
         builder: (BuildContext context) {
           return Container(
               width: screenWidth,
-              margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 20),
-              padding: const EdgeInsets.all(20),
+              margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 15),
+              padding: const EdgeInsets.all(15),
               decoration: BoxDecoration(
                 color: kWhite,
                 borderRadius: kBorderRadiusM,
                 boxShadow: [
                   BoxShadow(
-                    color: kGrey.withOpacity(0.3),
-                    spreadRadius: 1,
-                    blurRadius: 12,
+                    color: kGrey.withOpacity(0.2),
+                    spreadRadius: 3,
+                    blurRadius: 10,
                   ),
                 ],
               ),
@@ -371,7 +397,7 @@ class _MainScreenState extends State<MainScreen> {
             carouselController: controller,
             options: CarouselOptions(
                 height: screenHeight * 0.7,
-                viewportFraction: 0.8,
+                viewportFraction: 0.85,
                 initialPage: 1,
                 enableInfiniteScroll: false,
                 enlargeCenterPage: true,
@@ -390,8 +416,8 @@ class _MainScreenState extends State<MainScreen> {
               return GestureDetector(
                 onTap: () => controller.animateToPage(entry.key),
                 child: Container(
-                  width: currentIdx == entry.key ? 25 : 10,
-                  height: 10,
+                  width: currentIdx == entry.key ? 20 : 8,
+                  height: 8,
                   margin: const EdgeInsets.symmetric(horizontal: 4),
                   decoration: BoxDecoration(
                       borderRadius: kBorderRadiusM,

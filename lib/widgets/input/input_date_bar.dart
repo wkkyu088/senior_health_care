@@ -22,9 +22,9 @@ class _InputDateBarState extends State<InputDateBar> {
         borderRadius: kBorderRadiusM,
         boxShadow: [
           BoxShadow(
-            color: kGrey.withOpacity(0.25),
-            spreadRadius: 1,
-            blurRadius: 12,
+            color: kGrey.withOpacity(0.2),
+            spreadRadius: 3,
+            blurRadius: 10,
           ),
         ],
       ),

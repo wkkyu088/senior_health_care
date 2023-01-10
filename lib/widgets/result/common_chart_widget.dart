@@ -7,15 +7,15 @@ Widget chartLegend(color, title) {
   return Row(
     children: [
       Container(
-        width: 10,
-        height: 10,
-        margin: const EdgeInsets.only(right: 5),
+        width: 8,
+        height: 8,
+        margin: const EdgeInsets.only(right: 4),
         decoration: BoxDecoration(
-          border: Border.all(color: color, width: 2),
+          border: Border.all(color: color, width: 1.6),
           shape: BoxShape.circle,
         ),
       ),
-      Text(title, style: const TextStyle(fontSize: 12)),
+      Text(title, style: TextStyle(fontSize: kXS)),
     ],
   );
 }
@@ -23,7 +23,7 @@ Widget chartLegend(color, title) {
 FlDotPainter dotWidget(
     FlSpot spot, double xPercentage, LineChartBarData bar, int index) {
   return FlDotCirclePainter(
-    radius: 3.5,
+    radius: 3,
     color: kWhite,
     strokeColor: bar.color,
     strokeWidth: 2,
@@ -36,7 +36,7 @@ List<TouchedSpotIndicatorData> touchedIndicators(
     final flLine = FlLine(color: barData.color, strokeWidth: 2.0);
     final dotData = FlDotData(
         getDotPainter: (spot, percent, bar, index) => FlDotCirclePainter(
-              radius: 5,
+              radius: 4.5,
               color: bar.color,
               strokeColor: kWhite,
               strokeWidth: 2,
