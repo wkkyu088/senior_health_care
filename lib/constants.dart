@@ -22,6 +22,8 @@ Color kBS = const Color(0xFFE57373);
 Color kW = const Color(0xFFFFB74D);
 Color kHR = const Color(0xFF4DB6AC);
 
+Color kAVG = const Color(0xFFF585AA);
+
 // Font Size
 double kXL = 20;
 double kL = 18;
