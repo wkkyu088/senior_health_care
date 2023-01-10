@@ -34,10 +34,12 @@ class _BloodSugarInputScreenState extends State<BloodSugarInputScreen> {
 
     if (!mounted) return;
     if (m.isNotEmpty) {
-      showWarningDialog(
+      twoButtonDialog(
         context,
         "이미 입력한 값이 존재합니다.\n새로 입력하시겠습니까?",
-        hasCancel: true,
+        () {
+          Navigator.pop(context);
+        },
         oneMorePop: true,
       );
     }
@@ -142,7 +144,7 @@ class _BloodSugarInputScreenState extends State<BloodSugarInputScreen> {
                     TextButton(
                       onPressed: () async {
                         if (beforeCont.text == "" || afterCont.text == "") {
-                          showWarningDialog(
+                          oneButtonDialog(
                               context, "입력하지 않은 필수 값이 있습니다.\n다시 확인해주세요!");
                           if (beforeCont.text == "") {
                             isBeforeEmpty = true;
@@ -170,7 +172,7 @@ class _BloodSugarInputScreenState extends State<BloodSugarInputScreen> {
                           if (!mounted) return;
 
                           if (before < 100 || after < 140) {
-                            showResultDialog(
+                            resultDialog(
                               context,
                               "정상",
                               "safe",
@@ -179,7 +181,7 @@ class _BloodSugarInputScreenState extends State<BloodSugarInputScreen> {
                             );
                           } else if ((before >= 100 && before <= 125) ||
                               (after >= 140 && after <= 199)) {
-                            showResultDialog(
+                            resultDialog(
                               context,
                               "당뇨 전단계",
                               "warn",
@@ -187,7 +189,7 @@ class _BloodSugarInputScreenState extends State<BloodSugarInputScreen> {
                               const BloodSugarResultScreen(),
                             );
                           } else if (before >= 126 || after >= 200) {
-                            showResultDialog(
+                            resultDialog(
                               context,
                               "당뇨병",
                               "danger",
@@ -195,7 +197,7 @@ class _BloodSugarInputScreenState extends State<BloodSugarInputScreen> {
                               const BloodSugarResultScreen(),
                             );
                           } else {
-                            showWarningDialog(context, "측정 불가");
+                            oneButtonDialog(context, "측정 불가");
                           }
                         }
                       },

@@ -32,10 +32,12 @@ class _HeartRateInputScreenState extends State<HeartRateInputScreen> {
 
     if (!mounted) return;
     if (m.isNotEmpty) {
-      showWarningDialog(
+      twoButtonDialog(
         context,
         "이미 입력한 값이 존재합니다.\n새로 입력하시겠습니까?",
-        hasCancel: true,
+        () {
+          Navigator.pop(context);
+        },
         oneMorePop: true,
       );
     }
@@ -111,7 +113,7 @@ class _HeartRateInputScreenState extends State<HeartRateInputScreen> {
                     TextButton(
                       onPressed: () async {
                         if (valueCont.text == "") {
-                          showWarningDialog(
+                          oneButtonDialog(
                               context, "입력하지 않은 필수 값이 있습니다.\n다시 확인해주세요!");
                           isValueEmpty = true;
                           setState(() {});
@@ -130,7 +132,7 @@ class _HeartRateInputScreenState extends State<HeartRateInputScreen> {
                           if (!mounted) return;
                           if (userGender) {
                             if (value >= 50 && value <= 73) {
-                              showResultDialog(
+                              resultDialog(
                                 context,
                                 "좋음",
                                 "safe",
@@ -138,7 +140,7 @@ class _HeartRateInputScreenState extends State<HeartRateInputScreen> {
                                 const HeartRateResultScreen(),
                               );
                             } else if (value >= 74 && value <= 79) {
-                              showResultDialog(
+                              resultDialog(
                                 context,
                                 "평균 이하",
                                 "warn",
@@ -146,7 +148,7 @@ class _HeartRateInputScreenState extends State<HeartRateInputScreen> {
                                 const HeartRateResultScreen(),
                               );
                             } else if (value >= 80) {
-                              showResultDialog(
+                              resultDialog(
                                 context,
                                 "나쁨",
                                 "danger",
@@ -154,11 +156,11 @@ class _HeartRateInputScreenState extends State<HeartRateInputScreen> {
                                 const HeartRateResultScreen(),
                               );
                             } else {
-                              showWarningDialog(context, "측정 불가");
+                              oneButtonDialog(context, "측정 불가");
                             }
                           } else {
                             if (value >= 54 && value <= 76) {
-                              showResultDialog(
+                              resultDialog(
                                 context,
                                 "좋음",
                                 "safe",
@@ -166,7 +168,7 @@ class _HeartRateInputScreenState extends State<HeartRateInputScreen> {
                                 const HeartRateResultScreen(),
                               );
                             } else if (value >= 77 && value <= 84) {
-                              showResultDialog(
+                              resultDialog(
                                 context,
                                 "평균 이하",
                                 "warn",
@@ -174,7 +176,7 @@ class _HeartRateInputScreenState extends State<HeartRateInputScreen> {
                                 const HeartRateResultScreen(),
                               );
                             } else if (value >= 85) {
-                              showResultDialog(
+                              resultDialog(
                                 context,
                                 "나쁨",
                                 "danger",
@@ -182,7 +184,7 @@ class _HeartRateInputScreenState extends State<HeartRateInputScreen> {
                                 const HeartRateResultScreen(),
                               );
                             } else {
-                              showWarningDialog(context, "측정 불가");
+                              oneButtonDialog(context, "측정 불가");
                             }
                           }
                         }

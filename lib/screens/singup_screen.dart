@@ -318,16 +318,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         print(age);
                         print(height);
                         if (age < 1 || age > 120) {
-                          showWarningDialog(
-                              context, "나이 값이 범위 밖입니다.\n(1 ~ 120)");
+                          oneButtonDialog(context, "나이 값이 범위 밖입니다.\n(1 ~ 120)");
                         } else if (height < 80.0 || height > 250.0) {
-                          showWarningDialog(
+                          oneButtonDialog(
                               context, "키 값이 범위 밖입니다.\n(80.0 ~ 250.0)");
                         } else {
                           if (widget.isEmail) {
                             // 이메일 가입이라면
                             if (pw != pwCheck) {
-                              showWarningDialog(context, "비밀번호가 일치하지 않습니다.");
+                              oneButtonDialog(context, "비밀번호가 일치하지 않습니다.");
                             } else {
                               MethodEmail.signUpWithEmail(
                                   email, pw, age, isMale, height, context);

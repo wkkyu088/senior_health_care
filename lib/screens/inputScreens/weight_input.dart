@@ -31,10 +31,12 @@ class _WeightInputScreenState extends State<WeightInputScreen> {
 
     if (!mounted) return;
     if (m.isNotEmpty) {
-      showWarningDialog(
+      twoButtonDialog(
         context,
         "이미 입력한 값이 존재합니다.\n새로 입력하시겠습니까?",
-        hasCancel: true,
+        () {
+          Navigator.pop(context);
+        },
         oneMorePop: true,
       );
     }
@@ -88,12 +90,12 @@ class _WeightInputScreenState extends State<WeightInputScreen> {
                       onPressed: () async {
                         if (heightCont.text == "" || weightCont.text == "") {
                           if (heightCont.text == "") {
-                            showWarningDialog(
+                            oneButtonDialog(
                                 context, "입력하지 않은 필수 값이 있습니다.\n다시 확인해주세요!");
                             isHeightEmpty = true;
                             setState(() {});
                           } else if (weightCont.text == "") {
-                            showWarningDialog(
+                            oneButtonDialog(
                                 context, "입력하지 않은 필수 값이 있습니다.\n다시 확인해주세요!");
                             isWeightEmpty = true;
                             setState(() {});
@@ -114,7 +116,7 @@ class _WeightInputScreenState extends State<WeightInputScreen> {
 
                           if (!mounted) return;
                           if (bmi < 18.5) {
-                            showResultDialog(
+                            resultDialog(
                               context,
                               "저체중",
                               "danger",
@@ -122,7 +124,7 @@ class _WeightInputScreenState extends State<WeightInputScreen> {
                               const WeightResultScreen(),
                             );
                           } else if (bmi >= 18.5 && bmi <= 22.9) {
-                            showResultDialog(
+                            resultDialog(
                               context,
                               "정상 체중",
                               "safe",
@@ -130,7 +132,7 @@ class _WeightInputScreenState extends State<WeightInputScreen> {
                               const WeightResultScreen(),
                             );
                           } else if (bmi >= 23 && bmi <= 24.9) {
-                            showResultDialog(
+                            resultDialog(
                               context,
                               "과체중",
                               "safe",
@@ -138,7 +140,7 @@ class _WeightInputScreenState extends State<WeightInputScreen> {
                               const WeightResultScreen(),
                             );
                           } else if (bmi >= 25 && bmi <= 29.9) {
-                            showResultDialog(
+                            resultDialog(
                               context,
                               "경도비만",
                               "warn",
@@ -146,7 +148,7 @@ class _WeightInputScreenState extends State<WeightInputScreen> {
                               const WeightResultScreen(),
                             );
                           } else if (bmi >= 30) {
-                            showResultDialog(
+                            resultDialog(
                               context,
                               "고도비만",
                               "danger",
@@ -154,7 +156,7 @@ class _WeightInputScreenState extends State<WeightInputScreen> {
                               const WeightResultScreen(),
                             );
                           } else {
-                            showWarningDialog(context, "측정 불가");
+                            oneButtonDialog(context, "측정 불가");
                           }
                         }
                       },

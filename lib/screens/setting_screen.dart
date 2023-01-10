@@ -189,22 +189,19 @@ class _SettingScreenState extends State<SettingScreen> {
               children: [
                 TextButton(
                   onPressed: () {
-                    showWarningDialog(
-                      context,
-                      "정말 로그아웃 하시겠습니까?",
-                      hasCancel: true,
-                    );
-                    print("로그아웃됨");
-                    Fluttertoast.showToast(msg: "로그아웃 되었습니다.");
-                    uid = "";
-                    userAge = 0;
-                    userGender = true;
-                    userHeight = 0.0;
-                    FirebaseAuth.instance.signOut();
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const LoginScreen()));
+                    twoButtonDialog(context, "정말 로그아웃 하시겠습니까?", () {
+                      print("로그아웃됨");
+                      Fluttertoast.showToast(msg: "로그아웃 되었습니다.");
+                      uid = "";
+                      userAge = 0;
+                      userGender = true;
+                      userHeight = 0.0;
+                      FirebaseAuth.instance.signOut();
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginScreen()));
+                    });
                   },
                   style: TextButton.styleFrom(
                     primary: kLightGrey,
@@ -217,22 +214,21 @@ class _SettingScreenState extends State<SettingScreen> {
                 ),
                 TextButton(
                   onPressed: () {
-                    showWarningDialog(
-                      context,
-                      "모든 정보가 지워집니다.\n정말 탈퇴 하시겠습니까?",
-                      hasCancel: true,
-                    );
-                    // print("회원탈퇴됨");
-                    // Fluttertoast.showToast(msg: "탈퇴 되었습니다.");
-                    // uid = "";
-                    // userAge = 0;
-                    // userGender = true;
-                    // userHeight = 0.0;
-                    // FirebaseAuth.instance.signOut();
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => const LoginScreen()));
+                    twoButtonDialog(context, "모든 정보가 지워집니다.\n정말 탈퇴 하시겠습니까?",
+                        () {
+                      print("회원탈퇴됨");
+                      Fluttertoast.showToast(msg: "탈퇴 되었습니다.");
+                      uid = "";
+                      userAge = 0;
+                      userGender = true;
+                      userHeight = 0.0;
+                      FirebaseAuth.instance.signOut();
+                      // 계정삭제 코드 추가 필요
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginScreen()));
+                    });
                   },
                   style: TextButton.styleFrom(
                     primary: kLightGrey,

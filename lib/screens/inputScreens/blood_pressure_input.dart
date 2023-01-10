@@ -36,10 +36,12 @@ class _BloodPressureInputScreenState extends State<BloodPressureInputScreen> {
 
     if (!mounted) return;
     if (m.isNotEmpty) {
-      showWarningDialog(
+      twoButtonDialog(
         context,
         "이미 입력한 값이 존재합니다.\n새로 입력하시겠습니까?",
-        hasCancel: true,
+        () {
+          Navigator.pop(context);
+        },
         oneMorePop: true,
       );
     }
@@ -144,7 +146,7 @@ class _BloodPressureInputScreenState extends State<BloodPressureInputScreen> {
                         if (sysCont.text == "" ||
                             diaCont.text == "" ||
                             pulCont.text == "") {
-                          showWarningDialog(
+                          oneButtonDialog(
                               context, "입력하지 않은 필수 값이 있습니다.\n다시 확인해주세요!");
                           if (sysCont.text == "") {
                             isSysEmpty = true;
@@ -170,7 +172,7 @@ class _BloodPressureInputScreenState extends State<BloodPressureInputScreen> {
 
                           if (!mounted) return;
                           if (sys < 120 && dia < 80) {
-                            showResultDialog(
+                            resultDialog(
                               context,
                               "정상 혈압",
                               "safe",
@@ -178,7 +180,7 @@ class _BloodPressureInputScreenState extends State<BloodPressureInputScreen> {
                               const BloodPressureResultScreen(),
                             );
                           } else if (sys >= 140 && dia < 90) {
-                            showResultDialog(
+                            resultDialog(
                               context,
                               "수축기 단독 고혈압",
                               "danger",
@@ -186,7 +188,7 @@ class _BloodPressureInputScreenState extends State<BloodPressureInputScreen> {
                               const BloodPressureResultScreen(),
                             );
                           } else if (sys >= 120 && sys <= 129 && dia < 80) {
-                            showResultDialog(
+                            resultDialog(
                               context,
                               "주의혈압",
                               "warn",
@@ -195,7 +197,7 @@ class _BloodPressureInputScreenState extends State<BloodPressureInputScreen> {
                             );
                           } else if ((sys >= 130 && sys <= 139) ||
                               (dia >= 80 && dia <= 89)) {
-                            showResultDialog(
+                            resultDialog(
                               context,
                               "고혈압전단계",
                               "warn",
@@ -204,7 +206,7 @@ class _BloodPressureInputScreenState extends State<BloodPressureInputScreen> {
                             );
                           } else if ((sys >= 120 && sys <= 159) ||
                               (dia >= 90 && dia <= 99)) {
-                            showResultDialog(
+                            resultDialog(
                               context,
                               "고혈압 1기",
                               "danger",
@@ -212,7 +214,7 @@ class _BloodPressureInputScreenState extends State<BloodPressureInputScreen> {
                               const BloodPressureResultScreen(),
                             );
                           } else if (sys >= 160 || dia >= 100) {
-                            showResultDialog(
+                            resultDialog(
                               context,
                               "고혈압 2기",
                               "danger",
@@ -220,7 +222,7 @@ class _BloodPressureInputScreenState extends State<BloodPressureInputScreen> {
                               const BloodPressureResultScreen(),
                             );
                           } else {
-                            showWarningDialog(context, "측정 불가");
+                            oneButtonDialog(context, "측정 불가");
                           }
                         }
                       },
