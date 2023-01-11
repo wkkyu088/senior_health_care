@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:senior_health_care/widgets/radar_chart.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../constants.dart';
 
-class AverageBoard extends StatelessWidget {
+class AverageBoard extends StatefulWidget {
   const AverageBoard({Key? key}) : super(key: key);
 
+  @override
+  State<AverageBoard> createState() => _AverageBoardState();
+}
+
+class _AverageBoardState extends State<AverageBoard> {
   @override
   Widget build(BuildContext context) {
     final double screenWidth = MediaQuery.of(context).size.width;
@@ -49,17 +55,30 @@ class AverageBoard extends StatelessWidget {
 
     return Column(
       children: [
-        Container(
-          alignment: Alignment.centerLeft,
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-          child: Text(
-            "${userAge ~/ 10 * 10}대 ${userGender ? "남성" : "여성"} 평균",
-            style: TextStyle(
-              fontFamily: 'PretendardB',
-              fontSize: 24,
-              color: kBlack,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              alignment: Alignment.centerLeft,
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+              child: Text(
+                "${userAge ~/ 10 * 10}대 ${userGender ? "남성" : "여성"} 평균",
+                style: TextStyle(
+                  fontFamily: 'PretendardB',
+                  fontSize: 24,
+                  color: kBlack,
+                ),
+              ),
             ),
-          ),
+            IconButton(
+              onPressed: () {
+                Share.share("공유할 파일");
+              },
+              constraints: const BoxConstraints(),
+              icon: Icon(Icons.share_rounded, size: 18, color: kMain),
+            ),
+          ],
         ),
         Expanded(
           child: Container(
@@ -93,40 +112,40 @@ class AverageBoard extends StatelessWidget {
               cells: [
                 cellPlain("혈압 (SYS)"),
                 cellPlain(120),
-                cellValue(140, kDanger),
-                cellDiff(true, 20, kDanger),
+                cellValue(142, kDanger),
+                cellDiff(true, 22, kDanger),
               ],
             ),
             DataRow(
               cells: [
                 cellPlain("혈압 (DIA)"),
                 cellPlain(86),
-                cellValue(76, kSafe),
-                cellDiff(false, 10, kSafe),
+                cellValue(92, kDanger),
+                cellDiff(true, 6, kDanger),
               ],
             ),
             DataRow(
               cells: [
                 cellPlain("식전 혈당"),
-                cellPlain(110),
-                cellValue(106, kSafe),
-                cellDiff(false, 4, kSafe),
+                cellPlain(96),
+                cellValue(87, kSafe),
+                cellDiff(false, 9, kSafe),
               ],
             ),
             DataRow(
               cells: [
                 cellPlain("식후 혈당"),
-                cellPlain(160),
-                cellValue(180, kDanger),
-                cellDiff(true, 20, kDanger),
+                cellPlain(162),
+                cellValue(138, kSafe),
+                cellDiff(false, 24, kSafe),
               ],
             ),
             DataRow(
               cells: [
-                cellPlain("몸무게"),
-                cellPlain(65.4),
-                cellValue(68.4, kDanger),
-                cellDiff(true, 3.0, kDanger),
+                cellPlain("BMI"),
+                cellPlain(23.9),
+                cellValue(26.4, kDanger),
+                cellDiff(true, 2.5, kDanger),
               ],
             ),
             DataRow(

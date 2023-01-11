@@ -116,3 +116,66 @@ LineChartData mainData(bottomTitleWidgets, leftTitleWidgets, lineBarsData,
     lineBarsData: lineBarsData,
   );
 }
+
+Widget nowComment(screenWidth, desc, val, pred) {
+  late Color color;
+
+  if (val > 80) {
+    color = kDanger;
+  } else if (val > 40) {
+    color = kWarning;
+  } else {
+    color = kSafe;
+  }
+
+  return Stack(
+    children: [
+      Container(
+        width: screenWidth,
+        height: 80,
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+        decoration: BoxDecoration(
+          color: kWhite,
+          borderRadius: kBorderRadiusM,
+          boxShadow: [
+            BoxShadow(
+              color: kGrey.withOpacity(0.2),
+              spreadRadius: 3,
+              blurRadius: 10,
+            ),
+          ],
+        ),
+      ),
+      Container(
+        width: screenWidth,
+        height: 80,
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+        decoration: BoxDecoration(
+          color: color.withOpacity(0.15),
+          borderRadius: kBorderRadiusM,
+        ),
+        child: Row(
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(pred ? "5년 뒤" : "현재",
+                    style: TextStyle(color: kBlack, fontSize: kXS)),
+                const SizedBox(height: 2),
+                Text("$desc일 확률",
+                    style: TextStyle(color: kBlack, fontSize: kM)),
+              ],
+            ),
+            const Spacer(),
+            Text(
+              "$val%",
+              style: TextStyle(
+                  fontSize: 42, fontFamily: 'PretendardB', color: color),
+            )
+          ],
+        ),
+      ),
+    ],
+  );
+}

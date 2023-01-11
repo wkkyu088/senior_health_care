@@ -76,6 +76,8 @@ class _WeightResultScreenState extends State<WeightResultScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final double screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: customAppBar("몸무게 분석보기", context, hasBack: true),
       body: SingleChildScrollView(
@@ -159,39 +161,26 @@ class _WeightResultScreenState extends State<WeightResultScreen> {
                 ),
               ),
               const SizedBox(height: 10),
-              Container(
-                height: 100,
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                decoration: BoxDecoration(
-                  color: kWhite,
-                  borderRadius: kBorderRadiusM,
-                  boxShadow: [
-                    BoxShadow(
-                      color: kGrey.withOpacity(0.2),
-                      spreadRadius: 3,
-                      blurRadius: 10,
-                    ),
-                  ],
-                ),
-                child: Center(child: Text("지금 상태는?")),
-              ),
+              nowComment(screenWidth, "비만", 74, false),
               const SizedBox(height: 10),
-              Container(
-                height: 400,
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                decoration: BoxDecoration(
-                  color: kWhite,
-                  borderRadius: kBorderRadiusM,
-                  boxShadow: [
-                    BoxShadow(
-                      color: kGrey.withOpacity(0.2),
-                      spreadRadius: 3,
-                      blurRadius: 10,
-                    ),
-                  ],
-                ),
-                child: Center(child: Text("변화 추이")),
-              ),
+              nowComment(screenWidth, "비만", 81, true),
+              const SizedBox(height: 10),
+              // Container(
+              //   height: 400,
+              //   padding: const EdgeInsets.symmetric(vertical: 20),
+              //   decoration: BoxDecoration(
+              //     color: kWhite,
+              //     borderRadius: kBorderRadiusM,
+              //     boxShadow: [
+              //       BoxShadow(
+              //         color: kGrey.withOpacity(0.2),
+              //         spreadRadius: 3,
+              //         blurRadius: 10,
+              //       ),
+              //     ],
+              //   ),
+              //   child: Center(child: Text("변화 추이")),
+              // ),
             ],
           ),
         ),

@@ -42,9 +42,9 @@ class _MainScreenState extends State<MainScreen> {
                 ],
               ),
               child: i == "메인"
-                  ? mainBoard(context)
+                  ? const MainBoard()
                   : i == "최근"
-                      ? recentBoard(context)
+                      ? const RecentBoard()
                       : i == "평균"
                           ? const AverageBoard()
                           : Container());
