@@ -3,9 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../constants.dart';
 
-var fashionColor = kAVG;
-var artColor = kMain;
-
 class CustomRadarChart extends StatefulWidget {
   const CustomRadarChart({super.key});
 
@@ -156,7 +153,7 @@ class _CustomRadarChartState extends State<CustomRadarChart> {
 
       return RadarDataSet(
         fillColor: isSelected
-            ? rawDataSet.color.withOpacity(0.4)
+            ? rawDataSet.color.withOpacity(0.3)
             : rawDataSet.color.withOpacity(0.05),
         borderColor:
             isSelected ? rawDataSet.color : rawDataSet.color.withOpacity(0.25),
@@ -172,26 +169,26 @@ class _CustomRadarChartState extends State<CustomRadarChart> {
     return [
       RawDataSet(
         title: '평균',
-        color: fashionColor,
+        color: kAVG,
         values: [
-          120,
-          86,
-          110,
-          160,
-          65.4,
-          68,
+          120 / 142,
+          86 / 92,
+          96 / 96,
+          162 / 162,
+          23.9 / 23.9,
+          68 / 68,
         ],
       ),
       RawDataSet(
         title: '나',
-        color: artColor,
+        color: kMain,
         values: [
-          140,
-          76,
-          106,
-          180,
-          68.4,
-          68,
+          142 / 142,
+          92 / 92,
+          87 / 96,
+          138 / 162,
+          26.4 / 23.9,
+          68 / 68,
         ],
       ),
     ];
