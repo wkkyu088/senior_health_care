@@ -18,60 +18,58 @@ class _RecentBoardState extends State<RecentBoard> {
 
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-              child: Text(
-                "건강 정보",
-                style: TextStyle(
-                  fontFamily: 'PretendardB',
-                  fontSize: 24,
-                  color: kBlack,
-                ),
-              ),
+        Container(
+          alignment: Alignment.centerLeft,
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+          child: Text(
+            "건강 정보",
+            style: TextStyle(
+              fontFamily: 'PretendardB',
+              fontSize: 24,
+              color: kBlack,
             ),
-            IconButton(
-              onPressed: () {
-                Share.share("공유할 파일");
-              },
-              constraints: const BoxConstraints(),
-              icon: Icon(Icons.share_rounded, size: 18, color: kMain),
-            ),
-          ],
+          ),
         ),
         Expanded(
           flex: 5,
-          child: Container(
-            width: screenWidth,
-            decoration:
-                BoxDecoration(color: kLightGrey, borderRadius: kBorderRadiusS),
-            child: Center(child: Text("정보1")),
-          ),
-        ),
-        const SizedBox(height: 8),
-        Expanded(
-          flex: 3,
-          child: Row(
+          child: Stack(
             children: [
-              Expanded(
-                flex: 1,
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: kLightGrey, borderRadius: kBorderRadiusS),
-                  child: Center(child: Text("정보2")),
+              Container(
+                width: screenWidth,
+                height: screenHeight,
+                decoration: BoxDecoration(
+                  color: Colors.black87,
+                  borderRadius: kBorderRadiusS,
                 ),
               ),
-              const SizedBox(width: 8),
-              Expanded(
-                flex: 2,
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: kLightGrey, borderRadius: kBorderRadiusS),
-                  child: Center(child: Text("정보3")),
+              Container(
+                width: screenWidth,
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  borderRadius: kBorderRadiusS,
+                  image: const DecorationImage(
+                    image: AssetImage('assets/images/img2.webp'),
+                    fit: BoxFit.cover,
+                    opacity: 0.8,
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      "내 주변 병원 정보",
+                      style:
+                          TextStyle(fontSize: kM, height: 1.5, color: kWhite),
+                    ),
+                    Text(
+                      "한 눈에 보기",
+                      style: TextStyle(
+                          fontSize: kXL,
+                          fontFamily: 'PretendardB',
+                          color: kWhite),
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -83,20 +81,112 @@ class _RecentBoardState extends State<RecentBoard> {
           child: Row(
             children: [
               Expanded(
-                flex: 2,
+                flex: 1,
                 child: Container(
-                  decoration: BoxDecoration(
-                      color: kLightGrey, borderRadius: kBorderRadiusS),
-                  child: Center(child: Text("정보4")),
-                ),
+                    height: screenHeight,
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      borderRadius: kBorderRadiusS,
+                      gradient: LinearGradient(
+                          begin: Alignment.bottomLeft,
+                          end: Alignment.topRight,
+                          colors: [
+                            kMain.withOpacity(0.8),
+                            Colors.blue.withOpacity(0.5)
+                          ]),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "SeniDoc\n소식",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: kWhite,
+                          fontFamily: 'PretendardB',
+                          fontSize: kS,
+                        ),
+                      ),
+                    )),
               ),
               const SizedBox(width: 8),
               Expanded(
-                flex: 1,
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: kLightGrey, borderRadius: kBorderRadiusS),
-                  child: Center(child: Text("정보5")),
+                flex: 2,
+                child: Stack(
+                  children: [
+                    Container(
+                      width: screenWidth,
+                      height: screenHeight,
+                      decoration: BoxDecoration(
+                        color: Colors.black87,
+                        borderRadius: kBorderRadiusS,
+                      ),
+                    ),
+                    Container(
+                      width: screenWidth,
+                      height: screenHeight,
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        borderRadius: kBorderRadiusS,
+                        image: const DecorationImage(
+                          image: AssetImage('assets/images/img3.jpg'),
+                          fit: BoxFit.cover,
+                          opacity: 0.8,
+                        ),
+                      ),
+                      child: Text(
+                        "체지방의\n모든 것",
+                        style: TextStyle(color: kWhite, fontSize: kS),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 8),
+        Expanded(
+          flex: 3,
+          child: Stack(
+            children: [
+              Container(
+                width: screenWidth,
+                height: screenHeight,
+                decoration: BoxDecoration(
+                  color: Colors.black87,
+                  borderRadius: kBorderRadiusS,
+                ),
+              ),
+              Container(
+                width: screenWidth,
+                height: screenHeight,
+                alignment: Alignment.bottomLeft,
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  borderRadius: kBorderRadiusS,
+                  image: const DecorationImage(
+                    image: AssetImage('assets/images/img1.jpg'),
+                    fit: BoxFit.cover,
+                    opacity: 0.6,
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "당뇨병 예방에",
+                      style: TextStyle(
+                        color: kWhite,
+                        fontSize: kL,
+                        fontFamily: 'PretendardB',
+                        height: 2,
+                      ),
+                    ),
+                    Text(
+                      "좋은음식은 무엇일까?",
+                      style: TextStyle(color: kWhite, fontSize: kS),
+                    ),
+                  ],
                 ),
               ),
             ],

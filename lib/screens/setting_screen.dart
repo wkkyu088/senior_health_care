@@ -28,7 +28,7 @@ class _SettingScreenState extends State<SettingScreen> {
 
     // InputManager.setBloodPressure(uid, "20230105", "왼쪽 팔", 120, 76, 75);
 
-    for (var i = 0; i < 30; i++) {
+    for (var i = 1; i < 30; i++) {
       DateTime now = DateTime.now();
       String date =
           DateFormat('yyyyMMdd').format(now.subtract(Duration(days: i)));
@@ -49,10 +49,11 @@ class _SettingScreenState extends State<SettingScreen> {
       // // 심박수
       // InputManager.setHeartRate(uid, date, "평상시", Random().nextInt(10) + 60);
 
-      // // 몸무게
-      // double weight = Random().nextDouble() * 5 + 70;
+      // 몸무게
+      // double weight = Random().nextDouble() * 5 + 75;
       // double bmi = weight / (userHeight * userHeight * 0.01 * 0.01);
       // bmi = double.parse(bmi.toStringAsFixed(2));
+      // weight = double.parse(weight.toStringAsFixed(2));
       // InputManager.setWeight(uid, date, userHeight, weight, bmi);
     }
 
@@ -182,7 +183,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 ),
               ],
             ),
-            Text("uid : $uid"),
+            // Text("uid : $uid"),
             // const SizedBox(height: 50),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
