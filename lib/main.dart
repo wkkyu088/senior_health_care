@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'package:flutter/services.dart';
 import 'package:senior_health_care/screens/input_screen.dart';
 import 'package:senior_health_care/screens/login_screen.dart';
@@ -14,7 +15,10 @@ void main() async {
   //
   WidgetsFlutterBinding.ensureInitialized();
   // 파이어베이스 초기화
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    name: 'senidoc',
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -65,7 +69,6 @@ class MyApp extends StatelessWidget {
         ),
       ),
       // 시작 화면
-      // home: const LoginScreen(),
       home: const SplashScreen(),
     );
   }

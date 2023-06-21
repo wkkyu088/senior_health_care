@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "916265304547-an8ul6fr7ltfbihaak2npdqcje3n2pgt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.senior_health_care",
+            "certificate_hash": "854f1b90d5b7ef2d060ab2f6e8aa8248941a0201"
+          }
+        },
+        {
           "client_id": "916265304547-5n60afe8gakrqn3d6cgc4r49ni4v04t2.apps.googleusercontent.com",
           "client_type": 3
         }
